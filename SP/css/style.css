@@ -1,0 +1,491 @@
+/**
+* style.css
+* 
+* update : 2014-10-15
+* version : 1.0
+* author : SHOHE
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Denk+One);
+
+/**
+*	COMMON
+*/
+body {
+	overflow-x: hidden;
+	background: #3d3d3d;
+}
+
+a, li {
+	text-decoration: none;
+	list-style: none;
+}
+
+/*カテゴリースライドナビ*/
+nav {
+	width: 65%;
+	height: 100%;
+	position: fixed;
+	z-index: -1;
+}
+
+nav ul li{
+	width: 100%;
+	height: 45px;
+	background: #3d3d3d;
+	border-bottom: 1px solid #2e2e2e;
+	color: #ddd;
+	text-align: center;
+	line-height: 3.5em;
+	font-size: 13px;
+	text-align: left;
+	padding-left: 15px;
+}
+
+nav ul li:first-child{
+	height: 35px;
+	background: #2e2e2e;
+	color: #7d7d7d;
+	line-height: 2.7em;
+}
+
+nav ul li span {
+	margin-left: 90px;
+	font-size: 12px;
+}
+
+#base-wrapper {
+	background: #fff;
+	position: absolute;
+	overflow: hidden;
+	width: 100%;
+}
+
+header {
+	height: 50px;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.9);
+	text-align: center;
+	position: fixed;
+	z-index: 99;
+}
+
+header a {
+	color: #333;
+	font-size: 25px;
+	line-height: 2em;
+}
+
+header ul li {
+	width: 32%;
+	height: 50px;
+	list-style: none;
+	float: left;
+}
+
+header ul li:nth-child(3n-1) {
+	margin:0 2%;
+}
+
+#logo {
+	font-family: 'Denk One', sans-serif;
+	text-decoration: none;
+}
+
+#menu {
+	padding-right: 40px;
+}
+
+#search {
+	padding-left: 40px;
+}
+
+#logo:hover, #menu:hover, #search:hover {
+	color: #777;
+}
+
+#header-spase {
+	height: 50px;
+}
+
+/*記事リスト*/
+#myTab {
+	margin-top: 20px;
+}
+
+#myTab li {
+	width: 140px;
+	background: #fafafa;
+	text-align: center;
+}
+
+.article {
+	height: 75px;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+	float: left;
+}
+
+.article img {
+	height: auto;
+	width: 65px;
+	margin: 5px 10px 0px 0px;
+	float: left;
+	position: relative;
+	top: -20px;
+}
+
+.square-trim {
+	height: 65px;
+	width: 65px;
+	margin: 5px 10px 0px 0px;
+	float: left;
+	background: #aaa;
+	overflow: hidden;
+}
+
+
+.a-inline {
+	float: left;
+	width: 93%;
+}
+
+.a-title {
+	width: 70%;
+	height: 50px;
+	float: left;
+	font-size: 12px;
+	margin-top: 5px;
+	color: #333;
+	line-height: 1.2em;
+	padding-top: 5px;
+	font-weight: bold;
+}
+
+.a-tag {
+	width: 45%;
+	height: 15px;
+	float: left;
+	font-size: 10px;
+	color: #aaa;
+	line-height: 1.5em;
+}
+
+.a-new {
+	width: 50px;
+	height: 15px;
+	background: #ed53ce;
+	float: right;
+	font-size: 10px;
+	color: #fff;
+	line-height: 1.2em;
+	letter-spacing: 1px;
+	text-align: center;
+	font-weight: bold;
+	border: 1px solid #ed53ce;
+}
+
+.a-next {
+	width: 20px;
+	height: 70px;
+	float: left;
+	color: #aaa;
+	text-align: center;
+	padding-top: 29px;
+}
+
+#hot, #new {
+	padding-top: 10px;
+}
+
+.nav-tabs a{
+	color: #ed53ce;	
+}
+
+
+/*カテゴリ*/
+#category-box {
+	height: 200px;
+	margin-top: 20px;
+}
+
+#category-box h3 {
+	line-height: 2.4em;
+	color: #666;
+	font-weight: bold;
+}
+
+#category-box ul li {
+	height: 40px;
+	width: 50%;
+	float: left;
+	text-align: center;
+	line-height: 2.5em;
+}
+
+#category-box ul li a{
+	text-decoration: none;
+	color: #333;
+}
+
+#category-box ul li {
+	border-bottom: 1px solid #ddd;
+}
+
+.c-left {
+	border-right: 1px solid #ddd;
+}
+
+#category-box ul li:first-child {
+	border-top: 1px solid #ddd;
+}
+
+#category-box ul li div{
+	height: 40px;
+}
+
+#category-box ul li:first-child {
+	height: 30px;
+	background: #eee;
+	width: 100%;
+	float: left;
+	text-align: center;
+	font-size: 13px;
+}
+
+/*広告*/
+#ad-box {
+	height: 300px;
+	margin-top: 20px;
+	background: #ddd;
+	text-align: center;
+	line-height: 20em;
+}
+
+
+
+/*検索*/
+#search-box {
+	height: 50px;
+	padding-top: 1px;
+	border-bottom: 1px solid #ddd;
+}
+
+.input-group {
+	width: 75%;
+	margin: 0 auto;
+	margin-top: 2px;
+}
+
+#inputSearch {
+	width: 85%;
+	float: left;
+}
+
+#inputSbtn {
+	height: 34px;
+	width: 34px;
+	color: #eee;
+	background: #ed53ce;
+	border-top: 1px solid #ed53ce;
+	border-bottom: 1px solid #ed53ce;
+	border-right: 1px solid #ed53ce;
+}
+
+#inputSbtn i{
+	position: relative;
+	right: 2px;
+}
+
+
+/*会社*/
+#info-box {
+	color: #777;
+	height: 100px;
+}
+
+#info-box a{
+	color: #777;
+}
+
+#info-up, #info-down {
+	height: 40px;
+	text-align: center;
+	font-size: 10px;
+	line-height: 4em;
+}
+
+#copy {
+	font-size: 9px;
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+
+
+
+/**
+*	INDEX
+*/
+/*トピック記事*/
+#topic {
+	text-decoration: none;
+}
+
+#topic-pic {
+	height: 350px;
+	width: 100%;
+	background: url('../img/test_00.jpg');
+	background-position:center top;
+	background-repeat:no-repeat;
+	-moz-background-size:cover;
+	background-size:cover;
+}
+
+#topic-pic h4 {
+	height: 100px;
+	width: 100%;
+	background: rgba(255, 255, 255, 0.8);
+	position: relative;
+	top: 210px;
+	text-align: left;
+	line-height: 1.5em;
+	font-size: 13px;
+	padding: 20px 10px;
+	color: #555;
+}
+
+
+
+/**
+*	ARTICLES
+*/
+#article-top {
+	text-decoration: none;
+	position: fixed;
+	width: 100%;
+	height: 350px;
+	z-index: -10px;
+}
+
+#article-pic {
+	height: 350px;
+	background: url('../img/test_04.jpg');
+	background-position:center top;
+	background-repeat:no-repeat;
+	-moz-background-size:cover;
+	background-size:cover;
+}
+
+/*記事*/
+#wrap {
+	margin-top: 340px;
+	width: 100%;
+	position: absolute;
+	background: #fff;
+}
+
+#article-area {
+	padding: 15px;
+}
+
+#article-header {
+	height: 160px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #ddd;
+}
+
+#article-header p {
+	height: 20px;
+	font-size: 12px;
+	color: #aaa;
+}
+
+#pv {
+	float: right;
+}
+
+#pv-num {
+	font-size: 13px;
+	font-weight: bold;
+	margin-right: 3px;
+	letter-spacing: 1px;
+}
+
+#article-header h2 {
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 20px;
+	line-height: 1.5em;
+}
+
+#share-icons {
+	width: 180px;
+	height: 50px;
+	margin: 0 auto;
+}
+
+#share-icons a{
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin: 0px 5px;
+	border-radius: 50%;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+}
+
+#share-F {
+	background: #3B5998;
+	font-size: 22px;
+	line-height: 2.3em;
+}
+
+#share-T {
+	background: #55ACEE;
+	font-size: 25px;
+	line-height: 2em;
+}
+
+#share-L {
+	background: #1EC221;
+	line-height: 3.2em;
+}
+
+#write {
+	line-height: 1.7em;
+}
+
+#write span {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 10px;
+	border-bottom: 2px solid #ed53ce;
+}
+
+#write span:before {
+	content: "\A";
+  	white-space: pre;
+}
+
+#write span:after {
+	content: "\A";
+  	white-space: pre;
+}
+
+.fa-square {
+	color: #ed53ce;
+	margin-right: 5px;
+	font-size: 13px;
+}
+
+
+
+
+
+
+
+
+
+
