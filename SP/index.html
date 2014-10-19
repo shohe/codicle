@@ -9,8 +9,9 @@
 
 <!-- [jquery] -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="lib/jquery.easing.1.3.js"></script>
+<script src="lib/sp-slidemenu.js"></script>
 
 <!-- [BootStrap 3.2.0] -->
 <link rel="stylesheet" href="lib/bootstrap-3.2.0-dist/css/bootstrap.min.css">
@@ -25,6 +26,7 @@
 <link rel="stylesheet" href="css/style.css">
 <script src="js/style.js"></script>
 
+
 <!--[if lt IE 9]>
 <script src="//cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -32,26 +34,30 @@
 </head>
 <body>
 	<!-- カテゴリースライドナビ -->
-	<nav>
-		<ul>
-			<li>カテゴリ一覧</li>
-			<li>カテゴリ01<span class="glyphicon glyphicon-chevron-right"></span></li>
-			<li>カテゴリ02<span class="glyphicon glyphicon-chevron-right"></span></li>
-			<li>カテゴリ03<span class="glyphicon glyphicon-chevron-right"></span></li>
-			<li>カテゴリ04<span class="glyphicon glyphicon-chevron-right"></span></li>
-			<li>カテゴリ05<span class="glyphicon glyphicon-chevron-right"></span></li>
-			<li>カテゴリ06<span class="glyphicon glyphicon-chevron-right"></span></li>
-			<li>カテゴリ07<span class="glyphicon glyphicon-chevron-right"></span></li>
-			<li>カテゴリ08<span class="glyphicon glyphicon-chevron-right"></span></li>
-		</ul>
-	</nav>
+	<div class="slidemenu slidemenu-left">
+		<div class="slidemenu-header">
+			カテゴリ一覧
+		</div>
+		<div class="slidemenu-body">
+			<ul class="slidemenu-content">
+				<li>カテゴリ01<span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li>カテゴリ02<span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li>カテゴリ03<span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li>カテゴリ04<span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li>カテゴリ05<span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li>カテゴリ06<span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li>カテゴリ07<span class="glyphicon glyphicon-chevron-right"></span></li>
+				<li>カテゴリ08<span class="glyphicon glyphicon-chevron-right"></span></li>
+			</ul>
+		</div>
+	</div>
 
-	<div id="base-wrapper">
+	<div id="main">
 		<!-- HEADER -->
-		<header>
+		<header style="position:fixed">
 			<ul>
 				<li>
-					<a>
+					<a class="button menu-button-left">
 						<div id="menu"><i class="fa fa-bars"></i></div>
 					</a>
 				</li>

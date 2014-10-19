@@ -1,39 +1,17 @@
-$(function() {
-	$("div#menu").on("touchstart", function(){
-    	if($('div#base-wrapper').css('left') != '200px') {
-			$('div#base-wrapper').stop().animate({ left: 200 }, 200, 'easeOutQuint');
-			$('div#topic-pic h4').css('width', '100%');
-			$(window).on('touchmove.noScroll', function(e) {e.preventDefault()});
-		} else {
-			if($('div#base-wrapper').css('left') == '200px') {
-				$('div#base-wrapper').stop().animate({ left: 0 }, 200, 'easeOutQuint');
-				$(window).off('.noScroll');
-			}
-		}
-	})
+// スライドメニュー
+$(function(){
+	var menu = SpSlidemenu({
+		main : '#main',
+		button: '.menu-button-left',
+		slidemenu : '.slidemenu-left',
+		direction: 'left'
+	});
 });
 
-// ブラウザ用
-// $(function(){
-// 	$("div#menu").click(function(){
-// 		if($('div#base-wrapper').css('left') != '200px') {
-// 			$('div#base-wrapper').stop().animate({ left: 200 }, 200, 'easeOutQuint');
-// 			$('div#topic-pic h4').css('width', '100%');
-// 			$(window).on('touchmove.noScroll', function(e) {e.preventDefault()});
-// 		} else {
-// 			if($('div#base-wrapper').css('left') == '200px') {
-// 				$('div#base-wrapper').stop().animate({ left: 0 }, 200, 'easeOutQuint');
-// 				$(window).off('.noScroll');
-// 			}
-// 		}
-// 	});
-// });
-
-$(document).on("touchstart", function(event) {
-    if (!$.contains($('nav')[0], event.target)) {
-        if($('div#base-wrapper').css('left') == '200px') {
-			$('div#base-wrapper').stop().animate({ left: 0 }, 200, 'easeOutQuint');
-			$(window).off('.noScroll');
-		}
-    }
+// ヘッダーを常に表示
+$(window).scroll(function () {
+	var posTop = window.pageYOffset;
+	$('header').css('top',posTop);
 });
+
+
