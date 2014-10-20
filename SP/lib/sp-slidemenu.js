@@ -260,6 +260,28 @@ SpSlidemenu.prototype.setDefaultStyle = function() {
             transitionDelay: '0ms',
             transform: _this.getTranslateX(0)
         });
+        setStyles($('header').get(0), {
+            transitionProperty: getCSSName('transform'),
+            transitionTimingFunction: 'ease-in-out',
+            transitionDuration: ANIME_SPEED.slider + 'ms',
+            transitionDelay: '0ms',
+            transform: _this.getTranslateX(0)
+        });
+        setStyles($('#article-pic').get(0), {
+            transitionProperty: getCSSName('transform'),
+            transitionTimingFunction: 'ease-in-out',
+            transitionDuration: ANIME_SPEED.slider + 'ms',
+            transitionDelay: '0ms',
+            transform: _this.getTranslateX(0)
+        });
+        setStyles($('#header-spase').get(0), {
+            transitionProperty: getCSSName('transform'),
+            transitionTimingFunction: 'ease-in-out',
+            transitionDuration: ANIME_SPEED.slider + 'ms',
+            transitionDelay: '0ms',
+            transform: _this.getTranslateX(0)
+        });
+
         setStyles(_this.slidemenu, {
             transitionProperty: 'visibility',
             transitionTimingFunction: 'linear',
@@ -273,11 +295,25 @@ SpSlidemenu.prototype.setDefaultStyle = function() {
             transitionDelay: '0ms',
             transform: _this.getTranslateY(0)
         });
+
     } else {
         setStyles(_this.main, {
             position: 'relative',
             left: '0px'
         });
+        setStyles($('header').get(0), {
+            position: 'relative',
+            left: '0px'
+        });
+        setStyles($('#article-pic').get(0), {
+            position: 'relative',
+            left: '0px'
+        });
+        setStyles($('#header-spase').get(0), {
+            position: 'relative',
+            left: '0px'
+        });
+
         setStyles(_this.slidemenuContent, {
             top: '0px'
         });
@@ -289,9 +325,8 @@ SpSlidemenu.prototype.setHeight = function(event) {
     _this = this;
     browserHeight = getBrowserHeight();
 
-    setStyles(_this.main, {
-        minHeight: browserHeight + 'px'
-    });
+    setStyles(_this.main, {minHeight: browserHeight + 'px'});
+
     setStyles(_this.slidemenu, {
         height: browserHeight + 'px'
     });
@@ -369,9 +404,19 @@ SpSlidemenu.prototype.slideOpen = function(event) {
     // change style
     _this.htmlOverflowX = document.documentElement.style['overflowX'];
     _this.bodyOverflowX = document.body.style['overflowX'];
+
     document.documentElement.style['overflowX'] = document.body.style['overflowX'] = 'hidden';
     if (_this.useCssAnimation) {
         setStyles(_this.main, {
+            transform: _this.getTranslateX(toX)
+        });
+        setStyles($('header').get(0), {
+            transform: _this.getTranslateX(toX)
+        });
+        setStyles($('#article-pic').get(0), {
+            transform: _this.getTranslateX(toX)
+        });
+        setStyles($('#header-spase').get(0), {
             transform: _this.getTranslateX(toX)
         });
         setStyles(_this.slidemenu, {
@@ -379,6 +424,7 @@ SpSlidemenu.prototype.slideOpen = function(event) {
             visibility: 'visible',
             zIndex: '1'
         });
+        
     } else {
         animate(_this.main, _this.direction, toX, ANIME_SPEED.slider);
         setStyles(_this.slidemenu, {
@@ -427,8 +473,30 @@ SpSlidemenu.prototype.slideClose = function(event) {
               transform: _this.getTranslateX(0)
           });
         }, 50);
+
+        setTimeout( function() {
+          setStyles($('header').get(0), {
+              transform: _this.getTranslateX(0)
+          });
+        }, 50);
+
+        setTimeout( function() {
+          setStyles($('#article-pic').get(0), {
+              transform: _this.getTranslateX(0)
+          });
+        }, 50);
+
+        setTimeout( function() {
+          setStyles($('#header-spase').get(0), {
+              transform: _this.getTranslateX(0)
+          });
+        }, 50);
+
     } else {
         animate(_this.main, _this.direction, 0, ANIME_SPEED.slider);
+        animate($('header').get(0), _this.direction, 0, ANIME_SPEED.slider);
+        animate($('#article-pic').get(0), _this.direction, 0, ANIME_SPEED.slider);
+        animate($('#header-spase').get(0), _this.direction, 0, ANIME_SPEED.slider);
         setStyles(_this.slidemenu, {
             zIndex: '-1'
         });

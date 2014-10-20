@@ -1,3 +1,4 @@
+
 // スライドメニュー
 $(function(){
 	var menu = SpSlidemenu({
@@ -8,10 +9,14 @@ $(function(){
 	});
 });
 
-// ヘッダーを常に表示
-$(window).scroll(function () {
-	var posTop = window.pageYOffset;
-	$('header').css('top',posTop);
-});
+// 写真固定
+// $(window).scroll(function (){
+// 	var posTop = window.pageYOffset;
+// 	if(posTop >= 0){
+// 		$('#article-pic').css('transform','translate3d(0px, '+posTop+'px, 0px)');
+// 	} else {
+// 		$('#article-pic').css('transform','translate3d(0px, 0px, 0px)');
+// 	}
+// });
 
 

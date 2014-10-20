@@ -82,9 +82,9 @@ header {
 	width: 100%;
 	background: rgba(255, 255, 255, 0.9);
 	text-align: center;
-	position: absolute;
-	top: 0;
-	z-index: 999;
+	position: fixed;
+	/*top: 0;*/
+	z-index: 1;
 }
 
 header a {
@@ -123,6 +123,7 @@ header ul li:nth-child(3n-1) {
 
 #header-spase {
 	height: 50px;
+	background: #fff;
 }
 
 /*記事リスト*/
@@ -382,7 +383,7 @@ header ul li:nth-child(3n-1) {
 	position: fixed;
 	width: 100%;
 	height: 350px;
-	z-index: -10px;
+	z-index: -1;
 }
 
 #article-pic {
@@ -395,10 +396,9 @@ header ul li:nth-child(3n-1) {
 }
 
 /*記事*/
-#wrap {
+#article-wrapper {
 	margin-top: 340px;
 	width: 100%;
-	position: absolute;
 	background: #fff;
 }
 
@@ -500,7 +500,23 @@ header ul li:nth-child(3n-1) {
 
 
 
+/*=============*/
+#debuger {
+	height: 50px;
+	width: 100%;
+	background: rgba(255,255,255,0.9);
+	text-align: center;
+	position: fixed;
+	bottom: 0px;
+	z-index: 999;
+	line-height: 3em;
+}
 
+#debuger p{
+	font-size: 12px;
+	font-weight: bold;
+	color: #777;
+}
 
 
 
