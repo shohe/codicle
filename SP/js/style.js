@@ -7,16 +7,22 @@ $(function(){
 		slidemenu : '.slidemenu-left',
 		direction: 'left'
 	});
-});
 
-// 写真固定
-// $(window).scroll(function (){
-// 	var posTop = window.pageYOffset;
-// 	if(posTop >= 0){
-// 		$('#article-pic').css('transform','translate3d(0px, '+posTop+'px, 0px)');
-// 	} else {
-// 		$('#article-pic').css('transform','translate3d(0px, 0px, 0px)');
-// 	}
-// });
+	$('.list-img').bind('load',function(){
+		// 画像トリミング
+	    if($(this).height() > $(this).width()){
+	    	$(this).css({'height':'auto', 'width':'75px', 'top':'-20px'});
+	    } else {
+	    	$(this).css({'width':'auto', 'height':'75px', 'top':'0px'});
+	    }
+
+	    // 画像リサイズ
+	    if($(this).height() > $(this).width()){
+	    	$(this).css({'height':'auto', 'width':'75px', 'top':'-20px'});
+	    } else {
+	    	$(this).css({'width':'auto', 'height':'75px', 'top':'0px'});
+	    }
+    });
+});
 
 
