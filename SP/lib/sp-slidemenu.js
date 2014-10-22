@@ -281,6 +281,7 @@ SpSlidemenu.prototype.setDefaultStyle = function() {
             transitionDelay: '0ms',
             transform: _this.getTranslateX(0)
         });
+        $('body').css('background', '#FFF');
 
         setStyles(_this.slidemenu, {
             transitionProperty: 'visibility',
@@ -410,6 +411,7 @@ SpSlidemenu.prototype.slideOpen = function(event) {
         setStyles(_this.main, {
             transform: _this.getTranslateX(toX)
         });
+        $('body').css('background', '#3D3D3D');
         setStyles($('header').get(0), {
             transform: _this.getTranslateX(toX)
         });
@@ -513,6 +515,7 @@ SpSlidemenu.prototype.slideCloseEnd = function() {
     // change style
     document.documentElement.style['overflowX'] = _this.htmlOverflowX;
     document.body.style['overflowX'] = _this.bodyOverflowX;
+    $('body').css('background', '#FFF');
     if (_this.useCssAnimation) {
     } else {
         setStyles(_this.slidemenu, {

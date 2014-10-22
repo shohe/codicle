@@ -328,6 +328,7 @@ header ul li:nth-child(3n-1) {
 
 #info-box a{
 	color: #777;
+	text-decoration: none;
 }
 
 #info-up, #info-down {
@@ -561,3 +562,87 @@ header ul li:nth-child(3n-1) {
 }
 
 
+
+/*検索ページ*/
+#sh-title {
+	font-size: 18px;
+}
+
+.sh-search-title {
+	height: 30px;
+	width: 100%;
+	background: #fafafa;
+	line-height: 2.6em;
+	padding-left: 10px;
+	font-size: 12px;
+	color: #777;
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+}
+
+#sh-search-box {
+	height: 50px;
+	width: 100%;
+	padding-top: 6px;
+}
+
+#sh-tag-box {
+	height: 200px;
+	width: 100%;
+	padding: 5px;
+
+}
+
+.tag {
+	padding: 6px 7px;
+	font-size: 10px;
+	color: #999;
+	border: 1px solid #ddd;
+	float: left;
+	margin: 5px 5px;
+}
+
+.tag span {
+	margin-right: 4px;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+
+
+/*お問い合わせ*/
+#info-form {
+	height: 530px;
+	width: 100%;
+	padding: 10px;
+}
+
+#info-form p {
+	font-size: 10px;
+	color: #777;
+	letter-spacing: 0.8px;
+	line-height: 1.4em;
+	margin-bottom: 20px;
+}
+
+#info-form h3 {
+	font-size: 12px;
+	font-weight: bold;
+	color: #777;
+	margin: 5px 5px 5px 0px;
+}
+
+#info-form i {
+	color: #f498e2;
+}
+
+.form-control {
+	margin-bottom: 20px;
+}
+
+#info-b {
+	background: #ed53ce;
+	border: 1px solid #ed53ce;
+	font-size: 12px;
+	line-height: 1.2em;
+}
