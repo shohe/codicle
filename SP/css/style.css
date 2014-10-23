@@ -324,6 +324,7 @@ header ul li:nth-child(3n-1) {
 #info-box {
 	color: #777;
 	height: 100px;
+	padding-top: 25px;
 }
 
 #info-box a{
