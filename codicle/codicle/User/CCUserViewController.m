@@ -7,12 +7,15 @@
 //
 
 #import "CCUserViewController.h"
+#import "FXBlurView.h"
 
 
 #define USER_INFO_FRAME 350
 @interface CCUserViewController () {
-    UIImageView *_infoHeader;
-    CGRect _infoHeaderFrame;
+    UIImageView     *_infoHeader;
+    FXBlurView      *_infoHeaderBlur;
+    CAGradientLayer *_gradient;
+    CGRect          _infoHeaderFrame;
 }
 
 @end
@@ -35,6 +38,18 @@
     [_table addSubview:_infoHeader];
     
     _infoHeaderFrame = _infoHeader.frame;
+    
+    _infoHeaderBlur = [[FXBlurView alloc] initWithFrame:_infoHeaderFrame];
+    [_infoHeaderBlur setTintColor:[UIColor whiteColor]];
+    [_infoHeaderBlur setBlurRadius:5.f];
+    [_infoHeaderBlur setAlpha:0];
+    [_table addSubview:_infoHeaderBlur];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [UIView animateWithDuration:.2f animations:^{
+        [_infoHeaderBlur setAlpha:1];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,6 +81,7 @@
                                          _infoHeaderFrame.size.width,
                                          _infoHeaderFrame.size.height)];
     }
+    [_infoHeaderBlur setFrame:_infoHeader.frame];
 }
 
 /*****************************************/
