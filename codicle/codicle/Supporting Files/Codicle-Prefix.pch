@@ -1,0 +1,17 @@
+//
+//  Codicle-Prefix.pch
+//  codicle
+//
+//  Created by SHOHE on 2/8/15.
+//  Copyright (c) 2015 OhtaniShohe. All rights reserved.
+//
+
+#ifndef codicle_Codicle_Prefix_pch
+#define codicle_Codicle_Prefix_pch
+
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import "Constant.h"
+    #import "CCCore.h"
+
+#endif
