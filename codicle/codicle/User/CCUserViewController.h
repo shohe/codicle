@@ -10,4 +10,5 @@
 
 @interface CCUserViewController : CCBaseViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *table;
 @end

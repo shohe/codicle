@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -362,10 +363,10 @@
             </objects>
             <point key="canvasLocation" x="1425" y="-1242"/>
         </scene>
-        <!--Search User View Controller-->
+        <!--User View Controller-->
         <scene sceneID="JIB-WP-jXr">
             <objects>
-                <viewController id="ChC-sj-M2P" customClass="CCSearchUserViewController" sceneMemberID="viewController">
+                <viewController id="ChC-sj-M2P" customClass="CCUserViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="a4s-6A-7O6"/>
                         <viewControllerLayoutGuide type="bottom" id="iKK-BD-0m6"/>
@@ -373,9 +374,28 @@
                     <view key="view" contentMode="scaleToFill" id="F3I-Rb-X75">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="KNd-Sb-Z0h">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ChC-sj-M2P" id="wSN-Ef-Wbd"/>
+                                    <outlet property="delegate" destination="ChC-sj-M2P" id="151-Qd-8iT"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KNd-Sb-Z0h" firstAttribute="leading" secondItem="F3I-Rb-X75" secondAttribute="leading" id="TXq-WH-UCS"/>
+                            <constraint firstAttribute="trailing" secondItem="KNd-Sb-Z0h" secondAttribute="trailing" id="a5H-jc-NTQ"/>
+                            <constraint firstItem="KNd-Sb-Z0h" firstAttribute="bottom" secondItem="F3I-Rb-X75" secondAttribute="bottomMargin" id="rlX-2S-Qi9"/>
+                            <constraint firstItem="KNd-Sb-Z0h" firstAttribute="top" secondItem="F3I-Rb-X75" secondAttribute="topMargin" id="zyM-s3-a59"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="871-Dq-nXL"/>
+                    <connections>
+                        <outlet property="table" destination="KNd-Sb-Z0h" id="hK2-QA-xEW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R2H-Qq-xJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

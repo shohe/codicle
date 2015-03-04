@@ -35,7 +35,6 @@
 		097D69B41A9444EC00D04B45 /* CCCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 097D69B31A9444EC00D04B45 /* CCCore.m */; };
 		09853DF31A9A450C001613E9 /* smoke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09853DF21A9A450C001613E9 /* smoke@2x.png */; };
 		09998AE11AA6B8A600C9A9D3 /* CCUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09998AE01AA6B8A600C9A9D3 /* CCUserViewController.m */; };
-		09B254A91A9D90A30088E266 /* CCSearchUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B254A81A9D90A30088E266 /* CCSearchUserViewController.m */; };
 		09C77F051A87357800BD16C5 /* CCEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C77F041A87357800BD16C5 /* CCEntry.m */; };
 		09C77F091A8737F900BD16C5 /* CCTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C77F081A8737F900BD16C5 /* CCTimeLineCell.m */; };
 		09C77F0C1A8756EE00BD16C5 /* TEST_IMG_USR.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 09C77F0B1A8756EE00BD16C5 /* TEST_IMG_USR.jpg */; };
@@ -101,8 +100,6 @@
 		09853DF21A9A450C001613E9 /* smoke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smoke@2x.png"; sourceTree = "<group>"; };
 		09998ADF1AA6B8A600C9A9D3 /* CCUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserViewController.h; sourceTree = "<group>"; };
 		09998AE01AA6B8A600C9A9D3 /* CCUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserViewController.m; sourceTree = "<group>"; };
-		09B254A71A9D90A30088E266 /* CCSearchUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSearchUserViewController.h; sourceTree = "<group>"; };
-		09B254A81A9D90A30088E266 /* CCSearchUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSearchUserViewController.m; sourceTree = "<group>"; };
 		09C77F031A87357800BD16C5 /* CCEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEntry.h; sourceTree = "<group>"; };
 		09C77F041A87357800BD16C5 /* CCEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEntry.m; sourceTree = "<group>"; };
 		09C77F071A8737F900BD16C5 /* CCTimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTimeLineCell.h; sourceTree = "<group>"; };
@@ -245,8 +242,6 @@
 			children = (
 				091E80D71A8B63ED00AF52F7 /* CCSearchViewController.h */,
 				091E80D81A8B63ED00AF52F7 /* CCSearchViewController.m */,
-				09B254A71A9D90A30088E266 /* CCSearchUserViewController.h */,
-				09B254A81A9D90A30088E266 /* CCSearchUserViewController.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -464,7 +459,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				09C77F091A8737F900BD16C5 /* CCTimeLineCell.m in Sources */,
-				09B254A91A9D90A30088E266 /* CCSearchUserViewController.m in Sources */,
 				090116AF1A8681550035872A /* CCHomeViewController.m in Sources */,
 				09C77F051A87357800BD16C5 /* CCEntry.m in Sources */,
 				090116B61A8694230035872A /* Constant.m in Sources */,
