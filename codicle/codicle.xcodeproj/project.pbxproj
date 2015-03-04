@@ -34,6 +34,7 @@
 		09750CAD1A9E34DF007E59BC /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 09750CAC1A9E34DF007E59BC /* search.png */; };
 		097D69B41A9444EC00D04B45 /* CCCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 097D69B31A9444EC00D04B45 /* CCCore.m */; };
 		09853DF31A9A450C001613E9 /* smoke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09853DF21A9A450C001613E9 /* smoke@2x.png */; };
+		09998AE11AA6B8A600C9A9D3 /* CCUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09998AE01AA6B8A600C9A9D3 /* CCUserViewController.m */; };
 		09B254A91A9D90A30088E266 /* CCSearchUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B254A81A9D90A30088E266 /* CCSearchUserViewController.m */; };
 		09C77F051A87357800BD16C5 /* CCEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C77F041A87357800BD16C5 /* CCEntry.m */; };
 		09C77F091A8737F900BD16C5 /* CCTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C77F081A8737F900BD16C5 /* CCTimeLineCell.m */; };
@@ -98,6 +99,8 @@
 		097D69B21A9444EC00D04B45 /* CCCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCore.h; sourceTree = "<group>"; };
 		097D69B31A9444EC00D04B45 /* CCCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCore.m; sourceTree = "<group>"; };
 		09853DF21A9A450C001613E9 /* smoke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smoke@2x.png"; sourceTree = "<group>"; };
+		09998ADF1AA6B8A600C9A9D3 /* CCUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserViewController.h; sourceTree = "<group>"; };
+		09998AE01AA6B8A600C9A9D3 /* CCUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserViewController.m; sourceTree = "<group>"; };
 		09B254A71A9D90A30088E266 /* CCSearchUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSearchUserViewController.h; sourceTree = "<group>"; };
 		09B254A81A9D90A30088E266 /* CCSearchUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSearchUserViewController.m; sourceTree = "<group>"; };
 		09C77F031A87357800BD16C5 /* CCEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEntry.h; sourceTree = "<group>"; };
@@ -162,6 +165,7 @@
 				090116AC1A8680D50035872A /* Home */,
 				091E80D61A8B635E00AF52F7 /* Search */,
 				090116A81A86800F0035872A /* Base */,
+				09998ADE1AA6B86500C9A9D3 /* User */,
 				090116A41A867EAD0035872A /* Root */,
 				0901167F1A867CAC0035872A /* AppDelegate.h */,
 				090116801A867CAC0035872A /* AppDelegate.m */,
@@ -265,6 +269,15 @@
 				095B2E1F1A88D680005EA08B /* FLAnimatedImageView.m */,
 			);
 			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		09998ADE1AA6B86500C9A9D3 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				09998ADF1AA6B8A600C9A9D3 /* CCUserViewController.h */,
+				09998AE01AA6B8A600C9A9D3 /* CCUserViewController.m */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		09C77F021A8734E900BD16C5 /* Logic */ = {
@@ -455,6 +468,7 @@
 				090116AF1A8681550035872A /* CCHomeViewController.m in Sources */,
 				09C77F051A87357800BD16C5 /* CCEntry.m in Sources */,
 				090116B61A8694230035872A /* Constant.m in Sources */,
+				09998AE11AA6B8A600C9A9D3 /* CCUserViewController.m in Sources */,
 				09CC26881AA1748D00C0D514 /* FXBlurView.m in Sources */,
 				090116811A867CAC0035872A /* AppDelegate.m in Sources */,
 				090116AB1A8680870035872A /* CCBaseViewController.m in Sources */,
