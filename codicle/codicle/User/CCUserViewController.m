@@ -29,6 +29,7 @@
     _table.contentInset = UIEdgeInsetsMake(USER_INFO_FRAME, 0, 0, 0);
     _table.scrollIndicatorInsets = UIEdgeInsetsMake(USER_INFO_FRAME, 0, 0, 0);
     
+    
     // infoHeader init
     _infoHeader = [[UIImageView alloc] initWithFrame:
                    CGRectMake(0, -USER_INFO_FRAME-20, _CCWINDOWSIZE().width, USER_INFO_FRAME/2)];
@@ -41,9 +42,24 @@
     
     _infoHeaderBlur = [[FXBlurView alloc] initWithFrame:_infoHeaderFrame];
     [_infoHeaderBlur setTintColor:[UIColor whiteColor]];
-    [_infoHeaderBlur setBlurRadius:5.f];
+    [_infoHeaderBlur setBlurRadius:8.f];
     [_infoHeaderBlur setAlpha:0];
     [_table addSubview:_infoHeaderBlur];
+    
+    
+    // thumbnail init
+    _thumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(_infoHeaderFrame.size.width/2-40,
+                                                               -USER_INFO_FRAME+_infoHeaderFrame.size.height-60,
+                                                               80,
+                                                               80)];
+    _thumbnail.clipsToBounds = YES;
+    _thumbnail.layer.cornerRadius = _thumbnail.frame.size.width/2.f;
+    [[_thumbnail layer] setMasksToBounds:YES];
+    [[_thumbnail layer] setBorderWidth:2.f];
+    [[_thumbnail layer] setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_thumbnail setImage:[UIImage imageNamed:@"TEST_IMG_USR.jpg"]];
+    [_table addSubview:_thumbnail];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
