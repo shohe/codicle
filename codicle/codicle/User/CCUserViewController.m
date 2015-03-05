@@ -15,6 +15,8 @@
     UIImageView     *_infoHeader;
     UIImageView     *_infoLove;
     UIImageView     *_infoBook;
+    UILabel         *_infoHeaderName;
+    
     FXBlurView      *_infoHeaderBlur;
     CAGradientLayer *_gradient;
     CGRect          _infoHeaderFrame;
@@ -38,15 +40,13 @@
     [_infoHeader setImage:[UIImage imageNamed:@"model.jpg"]];
     [_infoHeader setContentMode:UIViewContentModeScaleAspectFill];
     [_infoHeader setClipsToBounds:YES];
-    [_table addSubview:_infoHeader];
-    
+
     _infoHeaderFrame = _infoHeader.frame;
     
     _infoHeaderBlur = [[FXBlurView alloc] initWithFrame:_infoHeaderFrame];
     [_infoHeaderBlur setTintColor:[UIColor whiteColor]];
     [_infoHeaderBlur setBlurRadius:8.f];
     [_infoHeaderBlur setAlpha:0];
-    [_table addSubview:_infoHeaderBlur];
     
     
     // thumbnail init
@@ -60,7 +60,6 @@
     [[_thumbnail layer] setBorderWidth:2.f];
     [[_thumbnail layer] setBorderColor:[[UIColor whiteColor] CGColor]];
     [_thumbnail setImage:[UIImage imageNamed:@"TEST_IMG_USR.jpg"]];
-    [_table addSubview:_thumbnail];
     
     
     // infoLove init
@@ -69,7 +68,6 @@
                                                               70,
                                                               70)];
     [_infoLove setImage:[UIImage imageNamed:@"love_360"]];
-    [_table addSubview:_infoLove];
     
     
     // infoBook init
@@ -78,7 +76,6 @@
                                                               70,
                                                               70)];
     [_infoBook setImage:[UIImage imageNamed:@"book_360"]];
-    [_table addSubview:_infoBook];
     
     
     // userName init
@@ -88,7 +85,25 @@
                                                           25)];
     [_userName setText:@"Shohe"];
     [_userName setTextAlignment:NSTextAlignmentCenter];
+    
+    // infoHeaderName init
+    _infoHeaderName = [[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                                _infoLove.frame.origin.y+75,
+                                                                _CCWINDOWSIZE().width,
+                                                                25)];
+    [_infoHeaderName setText:@"Shohe"];
+    [_infoHeaderName setTextColor:[UIColor whiteColor]];
+    [_infoHeaderName setTextAlignment:NSTextAlignmentCenter];
+    
+    
+    // add
     [_table addSubview:_userName];
+    [_table addSubview:_infoHeader];
+    [_table addSubview:_infoHeaderBlur];
+    [_table addSubview:_thumbnail];
+    [_table addSubview:_infoLove];
+    [_table addSubview:_infoBook];
+    [_infoHeaderBlur addSubview:_infoHeaderName];
     
 }
 
