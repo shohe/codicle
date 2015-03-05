@@ -20,6 +20,7 @@
     FXBlurView      *_infoHeaderBlur;
     CAGradientLayer *_gradient;
     CGRect          _infoHeaderFrame;
+    CGRect          _infoHeaderNameFrame;
 }
 
 @end
@@ -44,7 +45,7 @@
     _infoHeaderFrame = _infoHeader.frame;
     
     _infoHeaderBlur = [[FXBlurView alloc] initWithFrame:_infoHeaderFrame];
-    [_infoHeaderBlur setTintColor:[UIColor whiteColor]];
+    [_infoHeaderBlur setTintColor:[UIColor grayColor]];
     [_infoHeaderBlur setBlurRadius:8.f];
     [_infoHeaderBlur setAlpha:0];
     
@@ -88,12 +89,14 @@
     
     // infoHeaderName init
     _infoHeaderName = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                _infoLove.frame.origin.y+75,
+                                                                _infoHeaderFrame.size.height+75,
                                                                 _CCWINDOWSIZE().width,
                                                                 25)];
     [_infoHeaderName setText:@"Shohe"];
     [_infoHeaderName setTextColor:[UIColor whiteColor]];
     [_infoHeaderName setTextAlignment:NSTextAlignmentCenter];
+    [_infoHeaderName setAlpha:0];
+    _infoHeaderNameFrame = _infoHeaderName.frame;
     
     
     // add
@@ -124,24 +127,41 @@
 /*****************************************/
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     float offSetY = scrollView.contentOffset.y+USER_INFO_FRAME+20;
-    CCLog(@"%f",offSetY);
     
     if (offSetY <= 0) {
         [_infoHeader setFrame:CGRectMake(_infoHeaderFrame.origin.x+offSetY/2,
                                          _infoHeaderFrame.origin.y+offSetY,
                                          _infoHeaderFrame.size.width-offSetY,
                                          _infoHeaderFrame.size.height-offSetY)];
+        [_infoHeaderName setAlpha:0];
+        
     } else if (_infoHeaderFrame.size.height-offSetY <= 70) {
         [_infoHeader setFrame:CGRectMake(_infoHeaderFrame.origin.x,
                                          _infoHeaderFrame.origin.y+offSetY-105,
                                          _infoHeaderFrame.size.width,
                                          _infoHeaderFrame.size.height)];
+
+        [_infoHeaderName setFrame:CGRectMake(0,
+                                             _infoHeaderNameFrame.origin.y-(offSetY-105),
+                                             _infoHeaderNameFrame.size.width,
+                                             _infoHeaderNameFrame.size.height)];
+        [_infoHeaderName setAlpha:1];
+        
     } else if (offSetY <= 5) {
         [_infoHeader setFrame:CGRectMake(_infoHeaderFrame.origin.x,
                                          _infoHeaderFrame.origin.y,
                                          _infoHeaderFrame.size.width,
                                          _infoHeaderFrame.size.height)];
     }
+    
+    // infoHeaderName
+    if (offSetY >= 222) {
+        [_infoHeaderName setFrame:CGRectMake(0,
+                                             132,
+                                             _infoHeaderNameFrame.size.width,
+                                             _infoHeaderNameFrame.size.height)];
+    }
+    
     [_infoHeaderBlur setFrame:_infoHeader.frame];
 }
 
