@@ -13,6 +13,8 @@
 #define USER_INFO_FRAME 350
 @interface CCUserViewController () {
     UIImageView     *_infoHeader;
+    UIImageView     *_infoLove;
+    UIImageView     *_infoBook;
     FXBlurView      *_infoHeaderBlur;
     CAGradientLayer *_gradient;
     CGRect          _infoHeaderFrame;
@@ -59,6 +61,34 @@
     [[_thumbnail layer] setBorderColor:[[UIColor whiteColor] CGColor]];
     [_thumbnail setImage:[UIImage imageNamed:@"TEST_IMG_USR.jpg"]];
     [_table addSubview:_thumbnail];
+    
+    
+    // infoLove init
+    _infoLove = [[UIImageView alloc] initWithFrame:CGRectMake(_infoHeaderFrame.size.width/5,
+                                                              _thumbnail.frame.origin.y+40,
+                                                              70,
+                                                              70)];
+    [_infoLove setImage:[UIImage imageNamed:@"love_360"]];
+    [_table addSubview:_infoLove];
+    
+    
+    // infoBook init
+    _infoBook = [[UIImageView alloc] initWithFrame:CGRectMake(_infoHeaderFrame.size.width/5*3,
+                                                              _thumbnail.frame.origin.y+40,
+                                                              70,
+                                                              70)];
+    [_infoBook setImage:[UIImage imageNamed:@"book_360"]];
+    [_table addSubview:_infoBook];
+    
+    
+    // userName init
+    _userName = [[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                          _infoLove.frame.origin.y+75,
+                                                          _CCWINDOWSIZE().width,
+                                                          25)];
+    [_userName setText:@"Shohe"];
+    [_userName setTextAlignment:NSTextAlignmentCenter];
+    [_table addSubview:_userName];
     
 }
 
@@ -114,6 +144,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
     
+    cell.backgroundColor = [UIColor grayColor];
     cell.textLabel.text = @"text";
     
     return cell;

@@ -12,4 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong) UIImageView *thumbnail;
+@property (strong) UILabel *userName;
+
 @end
