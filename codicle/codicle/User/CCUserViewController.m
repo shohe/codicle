@@ -11,7 +11,7 @@
 #import "CCTimeLineCell.h"
 
 
-#define USER_INFO_FRAME 350
+#define USER_INFO_FRAME 300
 @interface CCUserViewController () {
     UIImageView     *_infoHeader;
     UIImageView     *_infoLove;
@@ -44,7 +44,7 @@
     
     // infoHeader init
     _infoHeader = [[UIImageView alloc] initWithFrame:
-                   CGRectMake(0, -USER_INFO_FRAME-20, _CCWINDOWSIZE().width, USER_INFO_FRAME/2)];
+                   CGRectMake(0, -USER_INFO_FRAME-20, _CCWINDOWSIZE().width, USER_INFO_FRAME/2+25)];
     [_infoHeader setImage:[UIImage imageNamed:@"model.jpg"]];
     [_infoHeader setContentMode:UIViewContentModeScaleAspectFill];
     [_infoHeader setClipsToBounds:YES];
@@ -58,10 +58,8 @@
     
     
     // thumbnail init
-    _thumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(_infoHeaderFrame.size.width/2-40,
-                                                               -USER_INFO_FRAME+_infoHeaderFrame.size.height-60,
-                                                               80,
-                                                               80)];
+    _thumbnail = [[UIImageView alloc] initWithFrame:
+                  CGRectMake(_infoHeaderFrame.size.width/2-45,-USER_INFO_FRAME+_infoHeaderFrame.size.height-65,90,90)];
     _thumbnail.clipsToBounds = YES;
     _thumbnail.layer.cornerRadius = _thumbnail.frame.size.width/2.f;
     [[_thumbnail layer] setMasksToBounds:YES];
@@ -71,34 +69,26 @@
     
     
     // infoLove init
-    _infoLove = [[UIImageView alloc] initWithFrame:CGRectMake(_infoHeaderFrame.size.width/5,
-                                                              _thumbnail.frame.origin.y+40,
-                                                              70,
-                                                              70)];
+    _infoLove = [[UIImageView alloc] initWithFrame:
+                 CGRectMake(_infoHeaderFrame.size.width/4-5,_thumbnail.frame.origin.y+45,70,55)];
     [_infoLove setImage:[UIImage imageNamed:@"love_360"]];
     
     
     // infoBook init
-    _infoBook = [[UIImageView alloc] initWithFrame:CGRectMake(_infoHeaderFrame.size.width/5*3,
-                                                              _thumbnail.frame.origin.y+40,
-                                                              70,
-                                                              70)];
+    _infoBook = [[UIImageView alloc] initWithFrame:
+                 CGRectMake(_infoHeaderFrame.size.width/4*2+35,_thumbnail.frame.origin.y+45,70,55)];
     [_infoBook setImage:[UIImage imageNamed:@"book_360"]];
     
     
     // userName init
-    _userName = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                          _infoLove.frame.origin.y+75,
-                                                          _CCWINDOWSIZE().width,
-                                                          25)];
+    _userName = [[UILabel alloc] initWithFrame:
+                 CGRectMake(0,_infoLove.frame.origin.y+55,_CCWINDOWSIZE().width,25)];
     [_userName setText:@"Shohe"];
     [_userName setTextAlignment:NSTextAlignmentCenter];
     
+    
     // infoHeaderName init
-    _infoHeaderName = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                _infoHeaderFrame.size.height+75,
-                                                                _CCWINDOWSIZE().width,
-                                                                25)];
+    _infoHeaderName = [[UILabel alloc] initWithFrame:CGRectMake(0,_infoHeaderFrame.size.height+55,_CCWINDOWSIZE().width,25)];
     [_infoHeaderName setText:@"Shohe"];
     [_infoHeaderName setTextColor:[UIColor whiteColor]];
     [_infoHeaderName setTextAlignment:NSTextAlignmentCenter];
@@ -110,16 +100,16 @@
     
     // Label init
     _cmLabel = [[UILabel alloc] initWithFrame:
-                CGRectMake(_CCWINDOWSIZE().width/6*1, -65, _CCWINDOWSIZE().width/6, 25)];
+                CGRectMake(_CCWINDOWSIZE().width/6*1, -50, _CCWINDOWSIZE().width/6, 25)];
     _postsLabel = [[UILabel alloc] initWithFrame:
-                   CGRectMake(_CCWINDOWSIZE().width/6*2, -65, _CCWINDOWSIZE().width/6, 25)];
+                   CGRectMake(_CCWINDOWSIZE().width/6*2, -50, _CCWINDOWSIZE().width/6, 25)];
     _followingLabel = [[UILabel alloc] initWithFrame:
-                       CGRectMake(_CCWINDOWSIZE().width/6*3, -65, _CCWINDOWSIZE().width/6, 25)];
+                       CGRectMake(_CCWINDOWSIZE().width/6*3, -50, _CCWINDOWSIZE().width/6, 25)];
     _followerLabel = [[UILabel alloc] initWithFrame:
-                      CGRectMake(_CCWINDOWSIZE().width/6*4, -65, _CCWINDOWSIZE().width/6, 25)];
+                      CGRectMake(_CCWINDOWSIZE().width/6*4, -50, _CCWINDOWSIZE().width/6, 25)];
     
     UILabel *_partition = [[UILabel alloc] initWithFrame:
-                           CGRectMake(_cmLabel.frame.origin.x+_cmLabel.frame.size.width,
+                           CGRectMake(_cmLabel.frame.origin.x+_cmLabel.frame.size.width-4,
                                       _cmLabel.frame.origin.y,
                                       2, _cmLabel.frame.size.height)];
     
@@ -163,6 +153,7 @@
                   CGRectMake(0, 12, _infoLove.frame.size.width, _infoLove.frame.size.height-10)];
     [_loveLabel setTextAlignment:NSTextAlignmentCenter];
     [_loveLabel setText:@"75"];
+    [_loveLabel setFont:[UIFont systemFontOfSize:12]];
     [_infoLove addSubview:_loveLabel];
     
     
@@ -171,6 +162,7 @@
                   CGRectMake(0, 8, _infoBook.frame.size.width, _infoBook.frame.size.height-10)];
     [_bookLabel setTextAlignment:NSTextAlignmentCenter];
     [_bookLabel setText:@"4"];
+    [_bookLabel setFont:[UIFont systemFontOfSize:12]];
     [_infoBook addSubview:_bookLabel];
     
     
@@ -267,7 +259,7 @@
     }
     
     // infoHeaderName
-    if (offSetY >= 222) {
+    if (offSetY >= 202) {
         [_infoHeaderName setFrame:CGRectMake(0,
                                              132,
                                              _infoHeaderNameFrame.size.width,
