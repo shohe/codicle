@@ -13,5 +13,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @property (strong) UIImageView *thumbnail;
 @property (strong) UILabel *userName;
+@property (strong) UILabel *userProfiel;
+@property (strong) UILabel *loveLabel;
+@property (strong) UILabel *bookLabel;
+@property (nonatomic, strong) NSMutableArray *dataMary;
 
 @end
