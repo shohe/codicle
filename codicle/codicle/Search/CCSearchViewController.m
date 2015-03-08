@@ -43,6 +43,7 @@
     // searchBar init.
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(20, 30, _CCWINDOWSIZE().width-40, 30)];
     [_searchBar setBackgroundImage: [UIImage imageNamed: @"clearBack.png"]];
+    [_searchBar setPlaceholder:@"keyword"];
     [_searchBackground addSubview:_searchBar];
     
     //* TEST
