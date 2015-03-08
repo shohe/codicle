@@ -11,7 +11,10 @@
 
 @interface CCSearchViewController () {
     UIView *_pushedSearchBtn;
+    UIView *_pushedBtnBorder;
     UIView *_searchBackground;
+    
+    UISearchBar *_searchBar;
     
     CGRect USER_BUTTON_FRAME;
     CGRect TITLE_BUTTON_FRAME;
@@ -37,6 +40,11 @@
     // search button init.
     [self initSearchButton];
     
+    // searchBar init.
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(20, 30, _CCWINDOWSIZE().width-40, 30)];
+    [_searchBar setBackgroundImage: [UIImage imageNamed: @"clearBack.png"]];
+    [_searchBackground addSubview:_searchBar];
+    
     //* TEST
     [CCCORE loadTestDataWithCompletion:^(NSError *error, NSMutableArray *mary) {
         if (!error) {
@@ -58,8 +66,12 @@
 - (void)initSearchButton {
     
     _searchBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _CCWINDOWSIZE().width, 130.f)];
-    _searchBackground.backgroundColor = [[UIColor alloc] initWithRed:0.f/255.f green:155.f/255.f blue:173.f/255.f alpha:1];
+    _searchBackground.backgroundColor = [UIColor colorWithRed:227.0f/255.0f green:230.0f/255.0f blue:237.0f/255.0f alpha:1];
     _searchBackground.alpha = 0.9f;
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.frame = CGRectMake(0.0f, _searchBackground.frame.size.height, _searchBackground.frame.size.width, 2.0f);
+    bottomBorder.backgroundColor = [UIColor grayColor].CGColor;
+    [_searchBackground.layer addSublayer:bottomBorder];
     
     float space = 20.f;
     float btnPosY = _searchBackground.frame.size.height/5*3;
@@ -75,19 +87,29 @@
     UIButton *channelBtn = [[UIButton alloc] initWithFrame:CHANNEL_BUTTON_FRAME];
     
     _pushedSearchBtn = [[UIView alloc] initWithFrame:USER_BUTTON_FRAME];
-    _pushedSearchBtn.backgroundColor = [[UIColor alloc] initWithRed:15.f/255.f green:130.f/255.f blue:150.f/255.f alpha:1.f];
+    _pushedSearchBtn.backgroundColor = [UIColor colorWithRed:190.0f/255.0f green:193.0f/255.0f blue:200.0f/255.0f alpha:1];
     _pushedSearchBtn.layer.cornerRadius = _pushedSearchBtn.frame.size.height/2;
     _pushedSearchBtn.clipsToBounds = YES;
+    
+    _pushedBtnBorder = [[UIView alloc] initWithFrame:
+                        CGRectMake(USER_BUTTON_FRAME.origin.x+USER_BUTTON_FRAME.size.width/2-1,
+                                   USER_BUTTON_FRAME.origin.y+USER_BUTTON_FRAME.size.height, 2, 23)];
+    [_pushedBtnBorder setBackgroundColor:[UIColor grayColor]];
     
     [userBtn setTitle:USER_BUTTON_TITLE forState:UIControlStateNormal];
     [titleBtn setTitle:TITLE_BUTTON_TITLE forState:UIControlStateNormal];
     [bouquetBtn setTitle:BOUQUET_BUTTON_TITLE forState:UIControlStateNormal];
     [channelBtn setTitle:CHANNEL_BUTTON_TITLE forState:UIControlStateNormal];
     
-    userBtn.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:9.5];
-    titleBtn.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:9.5];
-    bouquetBtn.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:9.5];
-    channelBtn.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:9.5];
+    [userBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [titleBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [bouquetBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [channelBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    userBtn.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:9.5];
+    titleBtn.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:9.5];
+    bouquetBtn.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:9.5];
+    channelBtn.titleLabel.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:9.5];
     
     [userBtn addTarget:self action:@selector(pushedSearchButton:) forControlEvents:UIControlEventTouchDown];
     [titleBtn addTarget:self action:@selector(pushedSearchButton:) forControlEvents:UIControlEventTouchDown];
@@ -95,6 +117,7 @@
     [channelBtn addTarget:self action:@selector(pushedSearchButton:) forControlEvents:UIControlEventTouchDown];
     
     [self.view addSubview:_searchBackground];
+    [_searchBackground addSubview:_pushedBtnBorder];
     [_searchBackground addSubview:_pushedSearchBtn];
     [_searchBackground addSubview:userBtn];
     [_searchBackground addSubview:titleBtn];
@@ -111,18 +134,26 @@
     if ([button.titleLabel.text isEqualToString:USER_BUTTON_TITLE]) {
         [UIView animateWithDuration:duration animations:^{
             [_pushedSearchBtn setFrame:USER_BUTTON_FRAME];
+            [_pushedBtnBorder setFrame:CGRectMake(USER_BUTTON_FRAME.origin.x+USER_BUTTON_FRAME.size.width/2-1,
+                                                  USER_BUTTON_FRAME.origin.y+USER_BUTTON_FRAME.size.height, 2, 23)];
         }];
     } else if ([button.titleLabel.text isEqualToString:TITLE_BUTTON_TITLE]) {
         [UIView animateWithDuration:duration animations:^{
             [_pushedSearchBtn setFrame:TITLE_BUTTON_FRAME];
+            [_pushedBtnBorder setFrame:CGRectMake(TITLE_BUTTON_FRAME.origin.x+TITLE_BUTTON_FRAME.size.width/2-1,
+                                                  TITLE_BUTTON_FRAME.origin.y+TITLE_BUTTON_FRAME.size.height, 2, 23)];
         }];
     } else if ([button.titleLabel.text isEqualToString:BOUQUET_BUTTON_TITLE]) {
         [UIView animateWithDuration:duration animations:^{
             [_pushedSearchBtn setFrame:BOUQUET_BUTTON_FRAME];
+            [_pushedBtnBorder setFrame:CGRectMake(BOUQUET_BUTTON_FRAME.origin.x+BOUQUET_BUTTON_FRAME.size.width/2-1,
+                                                  BOUQUET_BUTTON_FRAME.origin.y+BOUQUET_BUTTON_FRAME.size.height, 2, 23)];
         }];
     } else if ([button.titleLabel.text isEqualToString:CHANNEL_BUTTON_TITLE]) {
         [UIView animateWithDuration:duration animations:^{
             [_pushedSearchBtn setFrame:CHANNEL_BUTTON_FRAME];
+            [_pushedBtnBorder setFrame:CGRectMake(CHANNEL_BUTTON_FRAME.origin.x+CHANNEL_BUTTON_FRAME.size.width/2-1,
+                                                  CHANNEL_BUTTON_FRAME.origin.y+CHANNEL_BUTTON_FRAME.size.height, 2, 23)];
         }];
     }
 }
