@@ -70,13 +70,13 @@
     
     // infoLove init
     _infoLove = [[UIImageView alloc] initWithFrame:
-                 CGRectMake(_infoHeaderFrame.size.width/4-5,_thumbnail.frame.origin.y+45,70,55)];
+                 CGRectMake(_thumbnail.frame.origin.x-55,_thumbnail.frame.origin.y+45,70,55)];
     [_infoLove setImage:[UIImage imageNamed:@"love_360"]];
     
     
     // infoBook init
     _infoBook = [[UIImageView alloc] initWithFrame:
-                 CGRectMake(_infoHeaderFrame.size.width/4*2+35,_thumbnail.frame.origin.y+45,70,55)];
+                 CGRectMake(_thumbnail.frame.origin.x+_thumbnail.frame.size.width-15,_thumbnail.frame.origin.y+45,70,55)];
     [_infoBook setImage:[UIImage imageNamed:@"book_360"]];
     
     
