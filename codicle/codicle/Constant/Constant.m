@@ -14,7 +14,7 @@
 /*****************************************/
 NSString * const USER_BUTTON_TITLE = @"ユーザー";
 NSString * const TITLE_BUTTON_TITLE = @"タイトル";
-NSString * const BOUQUET_BUTTON_TITLE = @"ブーケ";
+NSString * const BOUQUET_BUTTON_TITLE = @"セット";
 NSString * const CHANNEL_BUTTON_TITLE = @"チャンネル";
 
 
