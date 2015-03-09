@@ -17,6 +17,7 @@ typedef void (^CCLoadImgCompletion)(UIImage * image);
 
 @interface CCCore : NSObject
 @property (nonatomic,strong) NSCache *urlImageCache;
+@property (readwrite) NSInteger *lastTabIndex;
 
 + (CCCore*)core;
 /*****************************************/

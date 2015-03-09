@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     CGSize bbgSize = self.tabBar.frame.size;
-    UIImage *bbg = [UIImage imageNamed:@"bbg.png"];
+//    UIImage *bbg = [UIImage imageNamed:@"bbg.png"];
     
     //* resize bbg
 //    UIImage *resizeBbg;
@@ -26,7 +26,7 @@
 //    resizeBbg = UIGraphicsGetImageFromCurrentImageContext();
 //    UIGraphicsEndImageContext();
     
-    [[UITabBar appearance] setBackgroundImage:bbg];
+//    [[UITabBar appearance] setBackgroundImage:bbg];
     [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     
     CGSize imageSize = CGSizeMake(_CCWINDOWSIZE().width/4/3, _CCWINDOWSIZE().width/4/3);
@@ -67,14 +67,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    
+    switch ((long)item.tag)
+    {
+        case 0:
+            CCCORE.lastTabIndex = (NSInteger*)(long)item.tag;
+            break;
+        case 1:
+            CCCORE.lastTabIndex = (NSInteger*)(long)item.tag;
+            break;
+        case 2:
+            CCCORE.lastTabIndex = (NSInteger*)(long)item.tag;
+            break;
+        case 3:break;
+    }
+    CCLog(@"%ld", (long)CCCORE.lastTabIndex);
 }
-*/
 
 @end
