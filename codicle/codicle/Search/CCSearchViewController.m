@@ -8,6 +8,8 @@
 
 #import "CCSearchViewController.h"
 #import "CCSearchCell.h"
+#import "CCTitleSearchCell.h"
+#import "FXBlurView.h"
 
 @interface CCSearchViewController () {
     UIView *_pushedSearchBtn;
@@ -31,8 +33,20 @@
     
     // tableview footer margin
     self.table.contentInset =
-    (MARGIN_ON) ? UIEdgeInsetsMake(90, 0, 7.5, 0) : UIEdgeInsetsMake(0, 0, 49.0, 0);
+    (MARGIN_ON) ? UIEdgeInsetsMake(110, 0, 7.5, 0) : UIEdgeInsetsMake(0, 0, 49.0, 0);
     self.table.scrollIndicatorInsets = UIEdgeInsetsMake(90, 0, 0, 0);
+    
+    // test
+    _table.alpha = .8f;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:
+                              CGRectMake(0, 90, _CCWINDOWSIZE().width, _CCWINDOWSIZE().height-90)];
+    imageView.image = [UIImage imageNamed:@"model.jpg"];
+    FXBlurView *_infoHeaderBlur = [[FXBlurView alloc] initWithFrame:
+                                   CGRectMake(0, 0, _CCWINDOWSIZE().width, _CCWINDOWSIZE().height-90)];
+    [_infoHeaderBlur setBlurRadius:8.f];
+    [imageView addSubview:_infoHeaderBlur];
+    [self.view addSubview:imageView];
+    [self.view sendSubviewToBack:imageView];
     
     // datasource
     _usrDataMary = [NSMutableArray array];
@@ -169,10 +183,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSString *cellIdentifier = @"CCSearchCell";
-    CCSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+//    NSString *cellIdentifier = @"CCSearchCell";
+//    CCSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+//    if (!cell) {
+//        cell = [[CCSearchCell alloc] init];
+//    }
+//    
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    [cell setEntry:[_usrDataMary objectAtIndex:indexPath.row] withIndexPath:indexPath];
+//    
+//    return cell;
+    NSString *cellIdentifier = @"CCTitleSearchCell";
+    CCTitleSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     if (!cell) {
-        cell = [[CCSearchCell alloc] init];
+        cell = [[CCTitleSearchCell alloc] init];
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
