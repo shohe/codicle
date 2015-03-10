@@ -9,6 +9,7 @@
 #import "CCSearchViewController.h"
 #import "CCSearchCell.h"
 #import "CCTitleSearchCell.h"
+#import "CCSetSearchCell.h"
 #import "FXBlurView.h"
 
 @interface CCSearchViewController () {
@@ -22,6 +23,14 @@
     CGRect TITLE_BUTTON_FRAME;
     CGRect BOUQUET_BUTTON_FRAME;
     CGRect CHANNEL_BUTTON_FRAME;
+    
+    int SEARCH_STATE;
+    enum {
+        USER_SEARCH,
+        TITLE_SEARCH,
+        BOUQUET_SEARCH,
+        CHANNEL_SEARCH
+    };
 }
 
 @end
@@ -138,6 +147,8 @@
     [_searchBackground addSubview:titleBtn];
     [_searchBackground addSubview:bouquetBtn];
     [_searchBackground addSubview:channelBtn];
+    
+    SEARCH_STATE = USER_SEARCH;
 }
 
 /*****************************************/
@@ -147,28 +158,40 @@
     float duration = 0.3f;
     
     if ([button.titleLabel.text isEqualToString:USER_BUTTON_TITLE]) {
+        SEARCH_STATE = USER_SEARCH;
         [UIView animateWithDuration:duration animations:^{
             [_pushedSearchBtn setFrame:USER_BUTTON_FRAME];
             [_pushedBtnBorder setFrame:CGRectMake(USER_BUTTON_FRAME.origin.x+USER_BUTTON_FRAME.size.width/2-1,
                                                   USER_BUTTON_FRAME.origin.y+USER_BUTTON_FRAME.size.height, 2, 23)];
+        } completion:^(BOOL finished) {
+            [_table reloadData];
         }];
     } else if ([button.titleLabel.text isEqualToString:TITLE_BUTTON_TITLE]) {
+        SEARCH_STATE = TITLE_SEARCH;
         [UIView animateWithDuration:duration animations:^{
             [_pushedSearchBtn setFrame:TITLE_BUTTON_FRAME];
             [_pushedBtnBorder setFrame:CGRectMake(TITLE_BUTTON_FRAME.origin.x+TITLE_BUTTON_FRAME.size.width/2-1,
                                                   TITLE_BUTTON_FRAME.origin.y+TITLE_BUTTON_FRAME.size.height, 2, 23)];
+        } completion:^(BOOL finished) {
+            [_table reloadData];
         }];
     } else if ([button.titleLabel.text isEqualToString:BOUQUET_BUTTON_TITLE]) {
+        SEARCH_STATE = BOUQUET_SEARCH;
         [UIView animateWithDuration:duration animations:^{
             [_pushedSearchBtn setFrame:BOUQUET_BUTTON_FRAME];
             [_pushedBtnBorder setFrame:CGRectMake(BOUQUET_BUTTON_FRAME.origin.x+BOUQUET_BUTTON_FRAME.size.width/2-1,
                                                   BOUQUET_BUTTON_FRAME.origin.y+BOUQUET_BUTTON_FRAME.size.height, 2, 23)];
+        } completion:^(BOOL finished) {
+            [_table reloadData];
         }];
     } else if ([button.titleLabel.text isEqualToString:CHANNEL_BUTTON_TITLE]) {
+        SEARCH_STATE = CHANNEL_SEARCH;
         [UIView animateWithDuration:duration animations:^{
             [_pushedSearchBtn setFrame:CHANNEL_BUTTON_FRAME];
             [_pushedBtnBorder setFrame:CGRectMake(CHANNEL_BUTTON_FRAME.origin.x+CHANNEL_BUTTON_FRAME.size.width/2-1,
                                                   CHANNEL_BUTTON_FRAME.origin.y+CHANNEL_BUTTON_FRAME.size.height, 2, 23)];
+        } completion:^(BOOL finished) {
+            [_table reloadData];
         }];
     }
 }
@@ -183,34 +206,35 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    NSString *cellIdentifier = @"CCSearchCell";
-//    CCSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-//    if (!cell) {
-//        cell = [[CCSearchCell alloc] init];
-//    }
-//    
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    [cell setEntry:[_usrDataMary objectAtIndex:indexPath.row] withIndexPath:indexPath];
-//    
-//    return cell;
-    NSString *cellIdentifier = @"CCTitleSearchCell";
-    CCTitleSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[CCTitleSearchCell alloc] init];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    if (SEARCH_STATE == USER_SEARCH) {
+        cell = (CCSearchCell*)[tableView dequeueReusableCellWithIdentifier:@"CCSearchCell" forIndexPath:indexPath];
+        [(CCSearchCell*)cell setEntry:[_usrDataMary objectAtIndex:indexPath.row] withIndexPath:indexPath];
+        
+    } else if (SEARCH_STATE == TITLE_SEARCH) {
+        cell = (CCTitleSearchCell*)[tableView dequeueReusableCellWithIdentifier:@"CCTitleSearchCell" forIndexPath:indexPath];
+        [(CCTitleSearchCell*)cell setEntry:[_usrDataMary objectAtIndex:indexPath.row] withIndexPath:indexPath];
+        
+    } else if (SEARCH_STATE == BOUQUET_SEARCH) {
+        cell = (CCSetSearchCell*)[tableView dequeueReusableCellWithIdentifier:@"CCSetSearchCell" forIndexPath:indexPath];
+        [(CCSetSearchCell*)cell setEntry:[_usrDataMary objectAtIndex:indexPath.row] withIndexPath:indexPath];
+        
+    } else if (SEARCH_STATE == CHANNEL_SEARCH) {
+        cell = (CCSetSearchCell*)[tableView dequeueReusableCellWithIdentifier:@"CCSetSearchCell" forIndexPath:indexPath];
+        [(CCSetSearchCell*)cell setEntry:[_usrDataMary objectAtIndex:indexPath.row] withIndexPath:indexPath];
+        
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell setEntry:[_usrDataMary objectAtIndex:indexPath.row] withIndexPath:indexPath];
-    
     return cell;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 90;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // CCSearchCell *cell = (CCSearchCell*)[tableView cellForRowAtIndexPath:indexPath];
     [self performSegueWithIdentifier:@"UserPushSegue" sender:self];

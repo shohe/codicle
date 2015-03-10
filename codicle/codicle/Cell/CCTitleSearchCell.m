@@ -44,7 +44,6 @@
     
     //* info
     _userName.text = entry.usrName;
-    //_post.text = [NSString stringWithFormat:@"%i Posts", 30];
 }
 
 @end

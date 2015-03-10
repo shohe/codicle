@@ -52,6 +52,7 @@
 		09D1E5241AAD12E1007E4941 /* plus_white.png in Resources */ = {isa = PBXBuildFile; fileRef = 09D1E5211AAD12E1007E4941 /* plus_white.png */; };
 		09D1E5271AADCD4C007E4941 /* CCTitleSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D1E5261AADCD4C007E4941 /* CCTitleSearchCell.m */; };
 		09DCF44F1A9EC2C100ECD7F8 /* bbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09DCF44E1A9EC2C100ECD7F8 /* bbg@2x.png */; };
+		09E8850F1AAF44860028687C /* CCSetSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E8850E1AAF44860028687C /* CCSetSearchCell.m */; };
 		09F761101A9D5BFC004A0734 /* CCSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F7610F1A9D5BFC004A0734 /* CCSearchCell.m */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +131,8 @@
 		09D1E5251AADCD4C007E4941 /* CCTitleSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTitleSearchCell.h; sourceTree = "<group>"; };
 		09D1E5261AADCD4C007E4941 /* CCTitleSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTitleSearchCell.m; sourceTree = "<group>"; };
 		09DCF44E1A9EC2C100ECD7F8 /* bbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bbg@2x.png"; sourceTree = "<group>"; };
+		09E8850D1AAF44860028687C /* CCSetSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSetSearchCell.h; sourceTree = "<group>"; };
+		09E8850E1AAF44860028687C /* CCSetSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSetSearchCell.m; sourceTree = "<group>"; };
 		09F7610E1A9D5BFC004A0734 /* CCSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSearchCell.h; sourceTree = "<group>"; };
 		09F7610F1A9D5BFC004A0734 /* CCSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSearchCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -314,6 +317,8 @@
 				09F7610F1A9D5BFC004A0734 /* CCSearchCell.m */,
 				09D1E5251AADCD4C007E4941 /* CCTitleSearchCell.h */,
 				09D1E5261AADCD4C007E4941 /* CCTitleSearchCell.m */,
+				09E8850D1AAF44860028687C /* CCSetSearchCell.h */,
+				09E8850E1AAF44860028687C /* CCSetSearchCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -515,6 +520,7 @@
 				090116A71A867F7C0035872A /* CCRootController.m in Sources */,
 				095B2E211A88D680005EA08B /* FLAnimatedImageView.m in Sources */,
 				0901167E1A867CAC0035872A /* main.m in Sources */,
+				09E8850F1AAF44860028687C /* CCSetSearchCell.m in Sources */,
 				09D1E5271AADCD4C007E4941 /* CCTitleSearchCell.m in Sources */,
 				09F761101A9D5BFC004A0734 /* CCSearchCell.m in Sources */,
 				091E80D91A8B63ED00AF52F7 /* CCSearchViewController.m in Sources */,
