@@ -25,6 +25,7 @@
 		095B2E201A88D680005EA08B /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 095B2E1D1A88D680005EA08B /* FLAnimatedImage.m */; };
 		095B2E211A88D680005EA08B /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 095B2E1F1A88D680005EA08B /* FLAnimatedImageView.m */; };
 		095B2E231A88E8C2005EA08B /* model2.png in Resources */ = {isa = PBXBuildFile; fileRef = 095B2E221A88E8C2005EA08B /* model2.png */; };
+		095BF2001AB932F200C7C0AC /* CCChannelSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 095BF1FF1AB932F200C7C0AC /* CCChannelSearchCell.m */; };
 		096F95421A881E6D00AC3911 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = 096F953F1A881E6D00AC3911 /* like.png */; };
 		096F95431A881E6D00AC3911 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 096F95401A881E6D00AC3911 /* share.png */; };
 		096F95441A881E6D00AC3911 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 096F95411A881E6D00AC3911 /* comment.png */; };
@@ -98,6 +99,8 @@
 		095B2E1E1A88D680005EA08B /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
 		095B2E1F1A88D680005EA08B /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
 		095B2E221A88E8C2005EA08B /* model2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = model2.png; sourceTree = "<group>"; };
+		095BF1FE1AB932F200C7C0AC /* CCChannelSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCChannelSearchCell.h; sourceTree = "<group>"; };
+		095BF1FF1AB932F200C7C0AC /* CCChannelSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCChannelSearchCell.m; sourceTree = "<group>"; };
 		096F953F1A881E6D00AC3911 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
 		096F95401A881E6D00AC3911 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		096F95411A881E6D00AC3911 /* comment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comment.png; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				09D1E5261AADCD4C007E4941 /* CCTitleSearchCell.m */,
 				09E8850D1AAF44860028687C /* CCSetSearchCell.h */,
 				09E8850E1AAF44860028687C /* CCSetSearchCell.m */,
+				095BF1FE1AB932F200C7C0AC /* CCChannelSearchCell.h */,
+				095BF1FF1AB932F200C7C0AC /* CCChannelSearchCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -519,6 +524,7 @@
 				097D69B41A9444EC00D04B45 /* CCCore.m in Sources */,
 				090116A71A867F7C0035872A /* CCRootController.m in Sources */,
 				095B2E211A88D680005EA08B /* FLAnimatedImageView.m in Sources */,
+				095BF2001AB932F200C7C0AC /* CCChannelSearchCell.m in Sources */,
 				0901167E1A867CAC0035872A /* main.m in Sources */,
 				09E8850F1AAF44860028687C /* CCSetSearchCell.m in Sources */,
 				09D1E5271AADCD4C007E4941 /* CCTitleSearchCell.m in Sources */,
