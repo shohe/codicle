@@ -20,4 +20,27 @@
     // Configure the view for the selected state
 }
 
+
+- (void)setEntry:(CCEntry *)entry withIndexPath:(NSIndexPath *)indexPath {
+    
+    if (_entry != entry) {
+        //_backGround.image = nil;
+    }
+    
+    _entry = entry;
+    __block __weak CCEntry *ccEntry = entry;
+    
+    [CCCORE imageAtURL:entry.usrImgUrl completion:^(UIImage *image) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (ccEntry == _entry) {
+                _thumbnail.image = image;
+            }
+        });
+    }];
+    
+    _title.text = @"チャンネル名";
+    _infoLabel.text = @"今時なんとかの原宿系モードなんとかのお得な情報もあるチャンネルです！";
+}
+
+
 @end
