@@ -10,4 +10,7 @@
 
 @interface CCRootController : UITabBarController
 
+@property (nonatomic, strong) UIView *postView;
+@property (nonatomic, strong) UIButton *cancelBtn;
+
 @end

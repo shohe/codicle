@@ -7,8 +7,12 @@
 //
 
 #import "CCRootController.h"
+#import "CCPostFlowController.h"
 
-@interface CCRootController ()
+@interface CCRootController () {
+    UIButton *_photoBtn;
+    UIButton *_videoBtn;
+}
 
 @end
 
@@ -16,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     CGSize bbgSize = self.tabBar.frame.size;
 //    UIImage *bbg = [UIImage imageNamed:@"bbg.png"];
     
@@ -60,6 +65,39 @@
     [self.tabBar addSubview:search];
     [self.tabBar addSubview:user];
     [self.tabBar addSubview:write];
+    
+    
+    
+    // postView init
+    _postView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _postView.backgroundColor = _CCColor();
+    _postView.alpha = 0;
+    _cancelBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, _CCWINDOWSIZE().height, _CCWINDOWSIZE().width, 49)];
+    _cancelBtn.backgroundColor = _CCBtnColor();
+    [_cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
+    [_cancelBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [_cancelBtn addTarget:self action:@selector(cancelPostView) forControlEvents:UIControlEventTouchUpInside];
+    [_postView addSubview:_cancelBtn];
+    [self.view addSubview:_postView];
+    
+    // button init
+    _photoBtn = [[UIButton alloc] initWithFrame:
+                 CGRectMake(_CCWINDOWSIZE().width/4*1-40+10, _CCWINDOWSIZE().height, 80, 80)];
+    _videoBtn = [[UIButton alloc] initWithFrame:
+                 CGRectMake(_CCWINDOWSIZE().width/4*3-40-10, _CCWINDOWSIZE().height, 80, 80)];
+    
+    _photoBtn.clipsToBounds = YES;
+    _photoBtn.layer.cornerRadius = _photoBtn.frame.size.width/2.f;
+    _videoBtn.clipsToBounds = YES;
+    _videoBtn.layer.cornerRadius = _videoBtn.frame.size.width/2.f;
+    
+    _photoBtn.backgroundColor = [UIColor purpleColor];
+    _videoBtn.backgroundColor = [UIColor purpleColor];
+    
+    [_photoBtn addTarget:self action:@selector(displayCollectionView) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_postView addSubview:_photoBtn];
+    [_postView addSubview:_videoBtn];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,9 +118,76 @@
         case 2:
             CCCORE.lastTabIndex = (NSInteger*)(long)item.tag;
             break;
-        case 3:break;
+        case 3:
+            [self displayPostView];
+            break;
     }
-    CCLog(@"%ld", (long)CCCORE.lastTabIndex);
+
 }
 
+
+- (void)displayPostView {
+    _postView.alpha = .9f;
+    [self performSelector:@selector(photoStartAnim) withObject:nil];
+    [self performSelector:@selector(videoStartAnim) withObject:nil afterDelay:.07f];
+    [self performSelector:@selector(cancelBtnStartAnim) withObject:nil afterDelay:.2f];
+}
+
+
+- (void)cancelPostView {
+    [UIView animateWithDuration:.2 animations:^{
+        _photoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*1-40+10, -80, 80, 80);
+        _videoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*3-40-10, -80, 80, 80);
+        _cancelBtn.frame = CGRectMake(0, _CCWINDOWSIZE().height, _CCWINDOWSIZE().width, 49);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.2 animations:^{
+            _postView.alpha = 0;
+        }];
+        _photoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*1-40+10, _CCWINDOWSIZE().height, 80, 80);
+        _videoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*3-40-10, _CCWINDOWSIZE().height, 80, 80);
+    }];
+}
+
+
+//* anim
+- (void)photoStartAnim {
+    [UIView animateWithDuration:.2 animations:^{
+        _photoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*1-40+10, _CCWINDOWSIZE().height/2-40-15, 80, 80);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.15 animations:^{
+            _photoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*1-40+10, _CCWINDOWSIZE().height/2-40, 80, 80);
+        }];
+    }];
+}
+
+- (void)videoStartAnim {
+    [UIView animateWithDuration:.2 animations:^{
+        _videoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*3-40-10, _CCWINDOWSIZE().height/2-40-15, 80, 80);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.15 animations:^{
+            _videoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*3-40-10, _CCWINDOWSIZE().height/2-40, 80, 80);
+        }];
+    }];
+}
+
+- (void)cancelBtnStartAnim {
+    [UIView animateWithDuration:.2 animations:^{
+        _cancelBtn.frame = CGRectMake(0, _CCWINDOWSIZE().height-49, _CCWINDOWSIZE().width, 49);
+    }];
+}
+
+- (void)displayCollectionView {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController *nc = [storyboard instantiateViewControllerWithIdentifier:@"PostNaviController"];
+    
+    [UIView animateWithDuration:.2 animations:^{
+        _photoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*1-40+10, -80, 80, 80);
+        _videoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*3-40-10, -80, 80, 80);
+        _cancelBtn.frame = CGRectMake(0, _CCWINDOWSIZE().height, _CCWINDOWSIZE().width, 49);
+    } completion:^(BOOL finished) {
+        _photoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*1-40+10, _CCWINDOWSIZE().height, 80, 80);
+        _videoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*3-40-10, _CCWINDOWSIZE().height, 80, 80);
+        [self presentViewController:nc animated:YES completion:nil];
+    }];
+}
 @end
