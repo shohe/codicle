@@ -10,6 +10,7 @@
 #import "CCSearchCell.h"
 #import "CCTitleSearchCell.h"
 #import "CCSetSearchCell.h"
+#import "CCChannelSearchCell.h"
 #import "FXBlurView.h"
 
 @interface CCSearchViewController () {
@@ -221,8 +222,8 @@
         [(CCSetSearchCell*)cell setEntry:[_usrDataMary objectAtIndex:indexPath.row] withIndexPath:indexPath];
         
     } else if (SEARCH_STATE == CHANNEL_SEARCH) {
-        cell = (CCSetSearchCell*)[tableView dequeueReusableCellWithIdentifier:@"CCSetSearchCell" forIndexPath:indexPath];
-        [(CCSetSearchCell*)cell setEntry:[_usrDataMary objectAtIndex:indexPath.row] withIndexPath:indexPath];
+        cell = (CCSetSearchCell*)[tableView dequeueReusableCellWithIdentifier:@"CCChannelSearchCell" forIndexPath:indexPath];
+        [(CCChannelSearchCell*)cell setEntry:[_usrDataMary objectAtIndex:indexPath.row] withIndexPath:indexPath];
         
     }
     
