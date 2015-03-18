@@ -33,3 +33,6 @@ CGSize _CCWINDOWSIZE(){
 UIColor* _CCColor() {
     return [UIColor colorWithRed:227.0f/255.0f green:230.0f/255.0f blue:237.0f/255.0f alpha:1];
 }
+UIColor* _CCBtnColor() {
+    return [UIColor colorWithRed:197.0f/255.0f green:200.0f/255.0f blue:207.0f/255.0f alpha:1];
+}
