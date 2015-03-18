@@ -29,3 +29,7 @@ CGSize _CCWINDOWSIZE(){
     });
     return windowSize;
 }
+
+UIColor* _CCColor() {
+    return [UIColor colorWithRed:227.0f/255.0f green:230.0f/255.0f blue:237.0f/255.0f alpha:1];
+}

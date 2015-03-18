@@ -31,3 +31,4 @@ extern NSString * const CHANNEL_BUTTON_TITLE;
 // function
 /*****************************************/
 CGSize  _CCWINDOWSIZE();
+UIColor* _CCColor();
