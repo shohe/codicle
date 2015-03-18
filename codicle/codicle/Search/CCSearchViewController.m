@@ -91,7 +91,7 @@
 - (void)initSearchButton {
     
     _searchBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _CCWINDOWSIZE().width, 130.f)];
-    _searchBackground.backgroundColor = [UIColor colorWithRed:227.0f/255.0f green:230.0f/255.0f blue:237.0f/255.0f alpha:1];
+    _searchBackground.backgroundColor = _CCColor();
     _searchBackground.alpha = 0.9f;
     CALayer *bottomBorder = [CALayer layer];
     bottomBorder.frame = CGRectMake(0.0f, _searchBackground.frame.size.height, _searchBackground.frame.size.width, 2.0f);

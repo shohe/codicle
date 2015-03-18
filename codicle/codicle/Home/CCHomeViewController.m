@@ -34,7 +34,7 @@
     
     // color setting
     self.view.backgroundColor = [UIColor whiteColor];
-    marginCellColor = [UIColor colorWithRed:227.0f/255.0f green:230.0f/255.0f blue:237.0f/255.0f alpha:1];
+    marginCellColor = _CCColor();
     self.table.backgroundColor = marginCellColor;
     
     // delete footer line
