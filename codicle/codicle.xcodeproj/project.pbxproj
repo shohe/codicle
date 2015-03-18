@@ -38,6 +38,7 @@
 		0977E0981AAC45A900E349CA /* clearBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 0977E0971AAC45A900E349CA /* clearBack.png */; };
 		097D69B41A9444EC00D04B45 /* CCCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 097D69B31A9444EC00D04B45 /* CCCore.m */; };
 		09853DF31A9A450C001613E9 /* smoke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09853DF21A9A450C001613E9 /* smoke@2x.png */; };
+		098AF8A61AB9E3C000B99049 /* CCPostFlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 098AF8A51AB9E3C000B99049 /* CCPostFlowController.m */; };
 		09998AE11AA6B8A600C9A9D3 /* CCUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09998AE01AA6B8A600C9A9D3 /* CCUserViewController.m */; };
 		09C77F051A87357800BD16C5 /* CCEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C77F041A87357800BD16C5 /* CCEntry.m */; };
 		09C77F091A8737F900BD16C5 /* CCTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C77F081A8737F900BD16C5 /* CCTimeLineCell.m */; };
@@ -116,6 +117,8 @@
 		097D69B21A9444EC00D04B45 /* CCCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCore.h; sourceTree = "<group>"; };
 		097D69B31A9444EC00D04B45 /* CCCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCore.m; sourceTree = "<group>"; };
 		09853DF21A9A450C001613E9 /* smoke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smoke@2x.png"; sourceTree = "<group>"; };
+		098AF8A41AB9E3C000B99049 /* CCPostFlowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPostFlowController.h; sourceTree = "<group>"; };
+		098AF8A51AB9E3C000B99049 /* CCPostFlowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPostFlowController.m; sourceTree = "<group>"; };
 		09998ADF1AA6B8A600C9A9D3 /* CCUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserViewController.h; sourceTree = "<group>"; };
 		09998AE01AA6B8A600C9A9D3 /* CCUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserViewController.m; sourceTree = "<group>"; };
 		09C77F031A87357800BD16C5 /* CCEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEntry.h; sourceTree = "<group>"; };
@@ -300,6 +303,8 @@
 			children = (
 				095BF2021AB96D9600C7C0AC /* CCPostViewController.h */,
 				095BF2031AB96D9600C7C0AC /* CCPostViewController.m */,
+				098AF8A41AB9E3C000B99049 /* CCPostFlowController.h */,
+				098AF8A51AB9E3C000B99049 /* CCPostFlowController.m */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -527,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09C77F091A8737F900BD16C5 /* CCTimeLineCell.m in Sources */,
+				098AF8A61AB9E3C000B99049 /* CCPostFlowController.m in Sources */,
 				090116AF1A8681550035872A /* CCHomeViewController.m in Sources */,
 				09C77F051A87357800BD16C5 /* CCEntry.m in Sources */,
 				090116B61A8694230035872A /* Constant.m in Sources */,
