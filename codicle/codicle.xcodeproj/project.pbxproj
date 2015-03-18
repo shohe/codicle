@@ -179,6 +179,7 @@
 		0901167A1A867CAC0035872A /* codicle */ = {
 			isa = PBXGroup;
 			children = (
+				095BF2011AB969C100C7C0AC /* Post */,
 				095B2E1A1A88D65E005EA08B /* Library */,
 				09C77F0A1A87568B00BD16C5 /* Resouce */,
 				09C77F021A8734E900BD16C5 /* Logic */,
@@ -289,6 +290,13 @@
 				095B2E1F1A88D680005EA08B /* FLAnimatedImageView.m */,
 			);
 			path = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		095BF2011AB969C100C7C0AC /* Post */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Post;
 			sourceTree = "<group>";
 		};
 		09998ADE1AA6B86500C9A9D3 /* User */ = {
