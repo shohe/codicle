@@ -448,7 +448,7 @@
                                             <outlet property="setName" destination="ZRY-jB-hAO" id="Wru-Cs-eAd"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="O1h-Cc-eq9" customClass="CCChannelSearchCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CCChannelSearchCell" id="O1h-Cc-eq9" customClass="CCChannelSearchCell">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O1h-Cc-eq9" id="IZ4-bb-Yuk">
