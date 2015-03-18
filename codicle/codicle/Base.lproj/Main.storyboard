@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -448,6 +448,48 @@
                                             <outlet property="setName" destination="ZRY-jB-hAO" id="Wru-Cs-eAd"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="O1h-Cc-eq9" customClass="CCChannelSearchCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O1h-Cc-eq9" id="IZ4-bb-Yuk">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vDX-7l-ttW">
+                                                    <rect key="frame" x="20" y="21" width="51" height="51"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="vDX-7l-ttW" secondAttribute="height" multiplier="1:1" id="o5A-2s-fsl"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="チャンネル名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0El-gF-6r7">
+                                                    <rect key="frame" x="91" y="25" width="78" height="16"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今時なんとかの原宿系なんとかのお得な情報もあるチャンネルです！" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fdk-vC-Opw">
+                                                    <rect key="frame" x="91" y="46" width="303" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Fdk-vC-Opw" firstAttribute="top" secondItem="0El-gF-6r7" secondAttribute="bottom" constant="5" id="1Mc-n7-4EM"/>
+                                                <constraint firstAttribute="trailing" secondItem="Fdk-vC-Opw" secondAttribute="trailing" constant="20" id="44t-mf-BWB"/>
+                                                <constraint firstItem="0El-gF-6r7" firstAttribute="leading" secondItem="vDX-7l-ttW" secondAttribute="trailing" constant="20" id="FCA-5c-Ia3"/>
+                                                <constraint firstItem="vDX-7l-ttW" firstAttribute="leading" secondItem="IZ4-bb-Yuk" secondAttribute="leading" constant="20" id="H2U-iU-dc5"/>
+                                                <constraint firstItem="Fdk-vC-Opw" firstAttribute="leading" secondItem="vDX-7l-ttW" secondAttribute="trailing" constant="20" id="mND-lW-reD"/>
+                                                <constraint firstAttribute="bottom" secondItem="vDX-7l-ttW" secondAttribute="bottom" constant="20" id="rc3-kZ-S3q"/>
+                                                <constraint firstItem="0El-gF-6r7" firstAttribute="top" secondItem="IZ4-bb-Yuk" secondAttribute="top" constant="25" id="uAt-FY-suH"/>
+                                                <constraint firstItem="vDX-7l-ttW" firstAttribute="top" secondItem="IZ4-bb-Yuk" secondAttribute="top" constant="20" id="uFR-hQ-Q4I"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="infoLabel" destination="Fdk-vC-Opw" id="Pya-KJ-cv8"/>
+                                            <outlet property="thumbnail" destination="vDX-7l-ttW" id="yxd-Qy-65J"/>
+                                            <outlet property="title" destination="0El-gF-6r7" id="hQV-aK-QEZ"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="8rJ-Kc-sve" id="wJi-tf-32O"/>
@@ -472,7 +514,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1425" y="-1256"/>
+            <point key="canvasLocation" x="1425" y="-1262"/>
         </scene>
         <!--User View Controller-->
         <scene sceneID="JIB-WP-jXr">

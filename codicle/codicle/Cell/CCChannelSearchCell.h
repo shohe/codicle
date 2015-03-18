@@ -10,4 +10,7 @@
 
 @interface CCChannelSearchCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnail;
+@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @end
