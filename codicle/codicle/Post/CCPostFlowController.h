@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CCPostFlowDelegate <NSObject>
+- (void)didPostCancel;
+@end
+
 @interface CCPostFlowController : UICollectionViewController
+
+@property (nonatomic, strong) id<CCPostFlowDelegate>delegate;
 
 @end

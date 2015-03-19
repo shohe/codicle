@@ -19,15 +19,30 @@ static NSString * const reuseIdentifier = @"Cell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-    //[self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
-    // Do any additional setup after loading the view.
+    // init view
     [self.collectionView setDataSource:self];
     [self.collectionView setDelegate:self];
+    
+    self.navigationController.view.backgroundColor = _CCColor();
+    UIColor *alphaCollor = [_CCColor() colorWithAlphaComponent:.1f];
+    
+    self.navigationController.view.backgroundColor = alphaCollor;
+    self.collectionView.backgroundColor = alphaCollor;
+    
+    [self.navigationController.navigationBar setBackgroundImage:
+     [UIImage new] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
+    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(pushCancel)];
+    self.navigationItem.leftBarButtonItem = cancelBtn;
+    
+    self.navigationController.view.alpha = 0;
+    [UIView animateWithDuration:.3f animations:^{
+        self.navigationController.view.alpha = 1;
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,15 +50,13 @@ static NSString * const reuseIdentifier = @"Cell";
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)pushCancel {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [UIView animateWithDuration:.5f animations:^{
+        self.navigationController.view.alpha = 0;
+    }];
+    [_delegate didPostCancel];
 }
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
