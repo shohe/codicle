@@ -48,7 +48,38 @@ static NSString * const reuseIdentifier = @"Cell";
     [UIView animateWithDuration:.3f animations:^{
         self.navigationController.view.alpha = 1;
     }];
+}
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:99 inSection:0];
+    [self.collectionView scrollToItemAtIndexPath:indexpath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    float delay = 0;
+    for (int i=99-(int)[self.collectionView indexPathsForVisibleItems].count; i <= 99; i++) {
+        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:i inSection:0];
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexpath];
+        
+        CGRect originFrame = cell.frame;
+        cell.frame = CGRectMake(originFrame.origin.x, originFrame.origin.y+_CCWINDOWSIZE().height,
+                                originFrame.size.width, originFrame.size.height);
+        
+        [UIView animateWithDuration:.4f delay:delay*.01 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+            cell.frame = CGRectMake(originFrame.origin.x, originFrame.origin.y-5,
+                                    originFrame.size.width, originFrame.size.height);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:.2f animations:^{
+                cell.frame = originFrame;
+            }];
+        }];
+        delay++;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -84,12 +115,9 @@ static NSString * const reuseIdentifier = @"Cell";
     return cell;
 }
 
-- (void)collectionCellAnimation {
-    NSArray *visiblePaths = [self.collectionView visibleCells];
-    CCLog(@"%@", visiblePaths);
-}
 
 #pragma mark <UICollectionViewDelegate>
+
 
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
