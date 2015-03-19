@@ -9,7 +9,7 @@
 #import "CCRootController.h"
 #import "CCPostFlowController.h"
 
-@interface CCRootController () {
+@interface CCRootController () <CCPostFlowDelegate>{
     UIButton *_photoBtn;
     UIButton *_videoBtn;
 }
@@ -177,8 +177,10 @@
 }
 
 - (void)displayCollectionView {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UINavigationController *nc = [storyboard instantiateViewControllerWithIdentifier:@"PostNaviController"];
+    UINavigationController *nc = [[self storyboard] instantiateViewControllerWithIdentifier:@"PostNaviController"];
+    nc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    CCPostFlowController *postFlowController = nc.childViewControllers[0];
+    postFlowController.delegate = self;
     
     [UIView animateWithDuration:.2 animations:^{
         _photoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*1-40+10, -80, 80, 80);
@@ -187,7 +189,18 @@
     } completion:^(BOOL finished) {
         _photoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*1-40+10, _CCWINDOWSIZE().height, 80, 80);
         _videoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*3-40-10, _CCWINDOWSIZE().height, 80, 80);
-        [self presentViewController:nc animated:YES completion:nil];
+        [self presentViewController:nc animated:NO completion:nil];
     }];
 }
+
+
+#pragma mark - CCPostFlowDelegate
+- (void)didPostCancel {
+    [UIView animateWithDuration:.5f animations:^{
+        _postView.alpha = 0;
+    }];
+}
+
 @end
+
+
