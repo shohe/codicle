@@ -27,7 +27,12 @@ static NSString * const reuseIdentifier = @"Cell";
     UIColor *alphaCollor = [_CCColor() colorWithAlphaComponent:.1f];
     
     self.navigationController.view.backgroundColor = alphaCollor;
+    self.navigationController.navigationBar.backgroundColor = [_CCColor() colorWithAlphaComponent:.97f];
     self.collectionView.backgroundColor = alphaCollor;
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _CCWINDOWSIZE().width, 20)];
+    header.backgroundColor = [_CCColor() colorWithAlphaComponent:.97f];
+    [self.navigationController.view addSubview:header];
+    self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
     
     [self.navigationController.navigationBar setBackgroundImage:
      [UIImage new] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
@@ -43,6 +48,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [UIView animateWithDuration:.3f animations:^{
         self.navigationController.view.alpha = 1;
     }];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,15 +72,21 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 30;
+    return 100;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
     
     return cell;
+}
+
+- (void)collectionCellAnimation {
+    NSArray *visiblePaths = [self.collectionView visibleCells];
+    CCLog(@"%@", visiblePaths);
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -107,5 +119,10 @@ static NSString * const reuseIdentifier = @"Cell";
 	
 }
 */
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+   
+    return CGSizeMake((_CCWINDOWSIZE().width-10*4)/3, (_CCWINDOWSIZE().width-10*4)/3);
+}
 
 @end
