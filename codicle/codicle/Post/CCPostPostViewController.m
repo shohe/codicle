@@ -8,7 +8,11 @@
 
 #import "CCPostPostViewController.h"
 
-@interface CCPostPostViewController ()
+@interface CCPostPostViewController () {
+    UIView *_postViewFrame;
+    CGPoint _originPoint;
+    CGPoint _touchPoint;
+}
 
 @end
 
@@ -32,6 +36,17 @@
      [UIImage new] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
+    
+    
+    // right button
+    UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"Post"
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(pushPost)];
+    postBtn.tintColor = [UIColor colorWithRed:30.f/255.f green:148.f/255.f blue:180.f/255.f alpha:1];
+    self.navigationItem.rightBarButtonItem = postBtn;
+    
+    [self createPostViewFrame];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,14 +54,35 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)pushPost {
+    CCLog(@"-");
 }
-*/
+
+- (void)createPostViewFrame {
+    _postViewFrame = [[UIView alloc] initWithFrame:CGRectMake(0, 79, _CCWINDOWSIZE().width, _CCWINDOWSIZE().width)];
+    _postViewFrame.backgroundColor = [UIColor whiteColor];
+    _originPoint = _postViewFrame.center;
+    [self.view addSubview:_postViewFrame];
+}
+
+
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    _touchPoint = [((UITouch*)[touches anyObject])locationInView:self.view];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    CGPoint point = [((UITouch*)[touches anyObject])locationInView:self.view];
+    float moveY = (point.y-_touchPoint.y)*.5f;
+    [_postViewFrame setCenter:CGPointMake(_originPoint.x, _originPoint.y+moveY)];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [UIView animateWithDuration:.4f animations:^{
+        [_postViewFrame setCenter:_originPoint];
+    }];
+}
 
 @end
