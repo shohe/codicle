@@ -8,6 +8,12 @@
 
 #import "CCBaseViewController.h"
 
+@protocol CCPostPostDelegate <NSObject>
+- (void)didPostCancel;
+@end
+
 @interface CCPostPostViewController : CCBaseViewController
+
+@property (nonatomic, strong) id<CCPostPostDelegate>delegate;
 
 @end
