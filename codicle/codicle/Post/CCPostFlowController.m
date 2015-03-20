@@ -9,7 +9,7 @@
 #import "CCPostFlowController.h"
 #import "CCPostPostViewController.h"
 
-@interface CCPostFlowController () {
+@interface CCPostFlowController ()<CCPostPostDelegate> {
     BOOL _isAnimated;
 }
 
@@ -126,15 +126,23 @@ static NSString * const reuseIdentifier = @"Cell";
     
     CCPostPostViewController *postPostViewController =
     [self.storyboard instantiateViewControllerWithIdentifier:@"CCPostPostViewController"];
+    postPostViewController.delegate = self;
     [self.navigationController pushViewController:postPostViewController animated:YES];
     
     
-    [UIView animateWithDuration:.5 animations:^{
+    [UIView animateWithDuration:.15 animations:^{
         self.collectionView.alpha = 0;
     } completion:^(BOOL finished) {
-        self.collectionView.alpha = 1;
+        [UIView animateWithDuration:.1 delay:1 options:UIViewAnimationOptionCurveLinear animations:^{
+            self.collectionView.alpha = 1;
+        } completion:nil];
     }];
     
+}
+
+#pragma mark <CCPostPostDelegate>
+- (void)didPostCancel {
+    [self pushCancel];
 }
 
 
