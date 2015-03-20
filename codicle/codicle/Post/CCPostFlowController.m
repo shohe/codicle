@@ -7,6 +7,7 @@
 //
 
 #import "CCPostFlowController.h"
+#import "CCPostPostViewController.h"
 
 @interface CCPostFlowController ()
 
@@ -38,11 +39,27 @@ static NSString * const reuseIdentifier = @"Cell";
      [UIImage new] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
+    // left button
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(pushCancel)];
+    cancelBtn.tintColor = [UIColor grayColor];
     self.navigationItem.leftBarButtonItem = cancelBtn;
+    
+    // right button
+    UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"Next"
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(pushNext)];
+    postBtn.tintColor = [UIColor grayColor];
+    self.navigationItem.rightBarButtonItem = postBtn;
+    
+    // back button.
+    UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
+    backBtn.title = @"Camera Roll";
+    [self.navigationItem.backBarButtonItem setTintColor:[UIColor grayColor]];
+    self.navigationItem.backBarButtonItem = backBtn;
     
     self.navigationController.view.alpha = 0;
     [UIView animateWithDuration:.3f animations:^{
@@ -51,36 +68,37 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:99 inSection:0];
-    [self.collectionView scrollToItemAtIndexPath:indexpath atScrollPosition:UICollectionViewScrollPositionBottom animated:YES];
-}
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//
+//    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:99 inSection:0];
+//    [self.collectionView scrollToItemAtIndexPath:indexpath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+//}
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    float delay = 0;
-    for (int i=99-(int)[self.collectionView indexPathsForVisibleItems].count; i <= 99; i++) {
-        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:i inSection:0];
-        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexpath];
-        
-        CGRect originFrame = cell.frame;
-        cell.frame = CGRectMake(originFrame.origin.x, originFrame.origin.y+_CCWINDOWSIZE().height,
-                                originFrame.size.width, originFrame.size.height);
-        
-        [UIView animateWithDuration:.4f delay:delay*.01 options:UIViewAnimationOptionAllowUserInteraction animations:^{
-            cell.frame = CGRectMake(originFrame.origin.x, originFrame.origin.y-5,
-                                    originFrame.size.width, originFrame.size.height);
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:.2f animations:^{
-                cell.frame = originFrame;
-            }];
-        }];
-        delay++;
-    }
-}
+//- (void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//    
+//    float delay = 0;
+//    for (int i=99-(int)[self.collectionView indexPathsForVisibleItems].count; i <= 99; i++) {
+//        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:i inSection:0];
+//        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexpath];
+//        
+//        CGRect originFrame = cell.frame;
+//        cell.frame = CGRectMake(originFrame.origin.x, originFrame.origin.y+_CCWINDOWSIZE().height,
+//                                originFrame.size.width, originFrame.size.height);
+//        
+//        [UIView animateWithDuration:.3f delay:delay*.01 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+//            cell.frame = CGRectMake(originFrame.origin.x, originFrame.origin.y-5,
+//                                    originFrame.size.width, originFrame.size.height);
+//        } completion:^(BOOL finished) {
+//            [UIView animateWithDuration:.2f animations:^{
+//                cell.frame = originFrame;
+//            }];
+//        }];
+//        delay++;
+//    }
+//}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -93,6 +111,21 @@ static NSString * const reuseIdentifier = @"Cell";
         self.navigationController.view.alpha = 0;
     }];
     [_delegate didPostCancel];
+}
+
+- (void)pushNext {
+    
+    CCPostPostViewController *postPostViewController =
+    [self.storyboard instantiateViewControllerWithIdentifier:@"CCPostPostViewController"];
+    [self.navigationController pushViewController:postPostViewController animated:YES];
+    
+    
+    [UIView animateWithDuration:.5 animations:^{
+        self.collectionView.alpha = 0;
+    } completion:^(BOOL finished) {
+        self.collectionView.alpha = 1;
+    }];
+    
 }
 
 #pragma mark <UICollectionViewDataSource>

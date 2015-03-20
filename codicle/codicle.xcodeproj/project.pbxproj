@@ -40,6 +40,7 @@
 		09853DF31A9A450C001613E9 /* smoke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09853DF21A9A450C001613E9 /* smoke@2x.png */; };
 		098AF8A61AB9E3C000B99049 /* CCPostFlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 098AF8A51AB9E3C000B99049 /* CCPostFlowController.m */; };
 		09998AE11AA6B8A600C9A9D3 /* CCUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09998AE01AA6B8A600C9A9D3 /* CCUserViewController.m */; };
+		09ACAE6C1ABBB780000A9C69 /* CCPostPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09ACAE6B1ABBB780000A9C69 /* CCPostPostViewController.m */; };
 		09C77F051A87357800BD16C5 /* CCEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C77F041A87357800BD16C5 /* CCEntry.m */; };
 		09C77F091A8737F900BD16C5 /* CCTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C77F081A8737F900BD16C5 /* CCTimeLineCell.m */; };
 		09C77F0C1A8756EE00BD16C5 /* TEST_IMG_USR.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 09C77F0B1A8756EE00BD16C5 /* TEST_IMG_USR.jpg */; };
@@ -121,6 +122,8 @@
 		098AF8A51AB9E3C000B99049 /* CCPostFlowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPostFlowController.m; sourceTree = "<group>"; };
 		09998ADF1AA6B8A600C9A9D3 /* CCUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserViewController.h; sourceTree = "<group>"; };
 		09998AE01AA6B8A600C9A9D3 /* CCUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserViewController.m; sourceTree = "<group>"; };
+		09ACAE6A1ABBB780000A9C69 /* CCPostPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPostPostViewController.h; sourceTree = "<group>"; };
+		09ACAE6B1ABBB780000A9C69 /* CCPostPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPostPostViewController.m; sourceTree = "<group>"; };
 		09C77F031A87357800BD16C5 /* CCEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCEntry.h; sourceTree = "<group>"; };
 		09C77F041A87357800BD16C5 /* CCEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCEntry.m; sourceTree = "<group>"; };
 		09C77F071A8737F900BD16C5 /* CCTimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTimeLineCell.h; sourceTree = "<group>"; };
@@ -305,6 +308,8 @@
 				095BF2031AB96D9600C7C0AC /* CCPostViewController.m */,
 				098AF8A41AB9E3C000B99049 /* CCPostFlowController.h */,
 				098AF8A51AB9E3C000B99049 /* CCPostFlowController.m */,
+				09ACAE6A1ABBB780000A9C69 /* CCPostPostViewController.h */,
+				09ACAE6B1ABBB780000A9C69 /* CCPostPostViewController.m */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -538,6 +543,7 @@
 				090116B61A8694230035872A /* Constant.m in Sources */,
 				095BF2041AB96D9600C7C0AC /* CCPostViewController.m in Sources */,
 				09998AE11AA6B8A600C9A9D3 /* CCUserViewController.m in Sources */,
+				09ACAE6C1ABBB780000A9C69 /* CCPostPostViewController.m in Sources */,
 				09CC26881AA1748D00C0D514 /* FXBlurView.m in Sources */,
 				090116811A867CAC0035872A /* AppDelegate.m in Sources */,
 				090116AB1A8680870035872A /* CCBaseViewController.m in Sources */,
