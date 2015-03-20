@@ -264,10 +264,32 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="a1k-Mm-15e"/>
+                    <connections>
+                        <segue destination="jlm-Fx-KhC" kind="push" id="V27-GY-GyZ"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b7B-5u-GO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7" y="1632"/>
+        </scene>
+        <!--Post Post View Controller-->
+        <scene sceneID="qFy-o1-htp">
+            <objects>
+                <viewController storyboardIdentifier="CCPostPostViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jlm-Fx-KhC" customClass="CCPostPostViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hGg-oZ-ye0"/>
+                        <viewControllerLayoutGuide type="bottom" id="huL-XK-gsc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dov-Y7-BMs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4jn-Nh-1LS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9nu-ml-1Ly" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="585" y="1632"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S6Q-pb-AIu">
