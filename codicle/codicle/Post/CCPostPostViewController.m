@@ -7,6 +7,7 @@
 //
 
 #import "CCPostPostViewController.h"
+#import "CCPostFlowController.h"
 
 @interface CCPostPostViewController () {
     UIView *_postViewFrame;
@@ -56,14 +57,27 @@
 
 
 - (void)pushPost {
-    CCLog(@"-");
+    [UIView animateWithDuration:.3f animations:^{
+        [_postViewFrame setCenter:CGPointMake(_originPoint.x, _originPoint.y+10)];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.3f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            [_postViewFrame setCenter:CGPointMake(_originPoint.x, _postViewFrame.frame.size.height*-1)];
+        } completion:^(BOOL finished) {
+            CCLog(@"TODO: post to server method");
+            [_delegate didPostCancel];
+        }];
+    }];
 }
 
 - (void)createPostViewFrame {
-    _postViewFrame = [[UIView alloc] initWithFrame:CGRectMake(0, 79, _CCWINDOWSIZE().width, _CCWINDOWSIZE().width)];
+    _postViewFrame = [[UIView alloc] initWithFrame:CGRectMake(0, 79, _CCWINDOWSIZE().width, _CCWINDOWSIZE().width+100)];
     _postViewFrame.backgroundColor = [UIColor whiteColor];
     _originPoint = _postViewFrame.center;
     [self.view addSubview:_postViewFrame];
+    
+    UIView *testImageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _CCWINDOWSIZE().width, _CCWINDOWSIZE().width)];
+    testImageView.backgroundColor = [UIColor colorWithRed:30.f/255.f green:148.f/255.f blue:180.f/255.f alpha:1];
+    [_postViewFrame addSubview:testImageView];
 }
 
 
@@ -80,8 +94,12 @@
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [UIView animateWithDuration:.4f animations:^{
-        [_postViewFrame setCenter:_originPoint];
+    [UIView animateWithDuration:.3f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [_postViewFrame setCenter:CGPointMake(_originPoint.x, _originPoint.y-3)];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:.1f animations:^{
+            [_postViewFrame setCenter:_originPoint];
+        }];
     }];
 }
 
