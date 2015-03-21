@@ -10,4 +10,9 @@
 
 @interface CCCameraRollCell : UICollectionViewCell
 
+@property (strong,nonatomic) UIImageView *imageView;
+@property (strong,nonatomic) UIImageView *selectedImage;
+@property (strong,nonatomic) UIView *maskView;
+@property NSIndexPath *indexPath;
+
 @end
