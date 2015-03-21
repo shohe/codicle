@@ -44,7 +44,7 @@
                                                                 style:UIBarButtonItemStylePlain
                                                                target:self
                                                                action:@selector(pushPost)];
-    postBtn.tintColor = [UIColor colorWithRed:30.f/255.f green:148.f/255.f blue:180.f/255.f alpha:1];
+    postBtn.tintColor = _CCBlueColor();
     self.navigationItem.rightBarButtonItem = postBtn;
     
     [self createPostViewFrame];
@@ -76,7 +76,7 @@
     [self.view addSubview:_postViewFrame];
     
     UIView *testImageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _CCWINDOWSIZE().width, _CCWINDOWSIZE().width)];
-    testImageView.backgroundColor = [UIColor colorWithRed:30.f/255.f green:148.f/255.f blue:180.f/255.f alpha:1];
+    testImageView.backgroundColor = _CCBlueColor();
     [_postViewFrame addSubview:testImageView];
 }
 
