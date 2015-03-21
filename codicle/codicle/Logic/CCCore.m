@@ -8,6 +8,7 @@
 
 #import "CCCore.h"
 #import "CCEntry.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @implementation CCCore
 
@@ -108,6 +109,36 @@
                 [_urlImageCache setObject:image forKey:url];
             }
         }
+    });
+}
+
+
+#pragma mark - load CameraRoll
+- (void)loadCameraRollListWithCompletion:(CCLoadCameraRollCompletion)completion {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSError *error = nil;
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        NSMutableArray *mary = [NSMutableArray array];
+        [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+            
+            if (group) {
+                [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+                    if (result) {
+                        ALAssetRepresentation *rep = [result defaultRepresentation];
+                        NSDate *date = [result valueForProperty:ALAssetPropertyDate];
+                        NSURL *url = [rep url];
+                        UIImage *image = [UIImage imageWithCGImage:result.thumbnail scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
+                        NSString *timeString = [NSString stringWithFormat:@"%@", [result valueForProperty:ALAssetPropertyDuration]];
+                        NSDictionary *assetData = [[NSDictionary alloc] initWithObjectsAndKeys:image, @"IMAGE",url, @"URL",date, @"DATE",timeString, @"TIME", nil];
+                        [mary insertObject:assetData atIndex:0];
+                        completion(error, mary);
+                    }
+                }];
+            }
+            
+        } failureBlock:^(NSError *error) {
+            completion(error, mary);
+        }];
     });
 }
 

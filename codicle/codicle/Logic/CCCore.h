@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FLAnimatedImage.h"
 
+typedef void (^CCLoadCameraRollCompletion)(NSError *error, NSArray *mary);
 typedef void (^CCLoadDataCompletion)(NSError *error , NSMutableArray *mary);
 typedef void (^CCLoadGifCompletion)(FLAnimatedImage * image);
 typedef void (^CCLoadImgCompletion)(UIImage * image);
@@ -18,6 +19,7 @@ typedef void (^CCLoadImgCompletion)(UIImage * image);
 @interface CCCore : NSObject
 @property (nonatomic,strong) NSCache *urlImageCache;
 @property (readwrite) NSInteger *lastTabIndex;
+@property (nonatomic,strong) NSArray *cameraRollData;
 
 + (CCCore*)core;
 /*****************************************/
@@ -26,6 +28,7 @@ typedef void (^CCLoadImgCompletion)(UIImage * image);
 - (void)loadTimeLineWithCompletion:(CCLoadDataCompletion)completion;
 - (void)gifImageAtURL:(NSString*)url completion:(CCLoadGifCompletion)completion;
 - (void)imageAtURL:(NSString*)url completion:(CCLoadImgCompletion)completion;
+- (void)loadCameraRollListWithCompletion:(CCLoadCameraRollCompletion)completion;
 
 /*****************************************/
 #pragma mark - test data
