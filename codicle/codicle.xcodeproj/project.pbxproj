@@ -39,6 +39,7 @@
 		097D69B41A9444EC00D04B45 /* CCCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 097D69B31A9444EC00D04B45 /* CCCore.m */; };
 		09853DF31A9A450C001613E9 /* smoke@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09853DF21A9A450C001613E9 /* smoke@2x.png */; };
 		098AF8A61AB9E3C000B99049 /* CCPostFlowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 098AF8A51AB9E3C000B99049 /* CCPostFlowController.m */; };
+		09925C251ABD67EF003811EB /* CCCameraRollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09925C241ABD67EF003811EB /* CCCameraRollCell.m */; };
 		09998AE11AA6B8A600C9A9D3 /* CCUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09998AE01AA6B8A600C9A9D3 /* CCUserViewController.m */; };
 		09ACAE6C1ABBB780000A9C69 /* CCPostPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09ACAE6B1ABBB780000A9C69 /* CCPostPostViewController.m */; };
 		09C77F051A87357800BD16C5 /* CCEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C77F041A87357800BD16C5 /* CCEntry.m */; };
@@ -120,6 +121,8 @@
 		09853DF21A9A450C001613E9 /* smoke@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smoke@2x.png"; sourceTree = "<group>"; };
 		098AF8A41AB9E3C000B99049 /* CCPostFlowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPostFlowController.h; sourceTree = "<group>"; };
 		098AF8A51AB9E3C000B99049 /* CCPostFlowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPostFlowController.m; sourceTree = "<group>"; };
+		09925C231ABD67EF003811EB /* CCCameraRollCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCameraRollCell.h; sourceTree = "<group>"; };
+		09925C241ABD67EF003811EB /* CCCameraRollCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCameraRollCell.m; sourceTree = "<group>"; };
 		09998ADF1AA6B8A600C9A9D3 /* CCUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUserViewController.h; sourceTree = "<group>"; };
 		09998AE01AA6B8A600C9A9D3 /* CCUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCUserViewController.m; sourceTree = "<group>"; };
 		09ACAE6A1ABBB780000A9C69 /* CCPostPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPostPostViewController.h; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				09E8850E1AAF44860028687C /* CCSetSearchCell.m */,
 				095BF1FE1AB932F200C7C0AC /* CCChannelSearchCell.h */,
 				095BF1FF1AB932F200C7C0AC /* CCChannelSearchCell.m */,
+				09925C231ABD67EF003811EB /* CCCameraRollCell.h */,
+				09925C241ABD67EF003811EB /* CCCameraRollCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -557,6 +562,7 @@
 				09F761101A9D5BFC004A0734 /* CCSearchCell.m in Sources */,
 				091E80D91A8B63ED00AF52F7 /* CCSearchViewController.m in Sources */,
 				095B2E201A88D680005EA08B /* FLAnimatedImage.m in Sources */,
+				09925C251ABD67EF003811EB /* CCCameraRollCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
