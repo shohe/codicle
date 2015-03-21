@@ -16,6 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [CCCORE loadCameraRollListWithCompletion:^(NSError *error, NSArray *mary) {
+        if (!error && [mary count] > 0) {
+            [CCCORE setCameraRollData:mary];
+        }
+    }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
