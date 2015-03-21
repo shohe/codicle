@@ -36,3 +36,6 @@ UIColor* _CCColor() {
 UIColor* _CCBtnColor() {
     return [UIColor colorWithRed:197.0f/255.0f green:200.0f/255.0f blue:207.0f/255.0f alpha:1];
 }
+UIColor* _CCBlueColor() {
+    return [UIColor colorWithRed:30.f/255.f green:148.f/255.f blue:180.f/255.f alpha:1];
+}

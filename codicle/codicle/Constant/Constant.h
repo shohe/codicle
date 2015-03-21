@@ -33,3 +33,4 @@ extern NSString * const CHANNEL_BUTTON_TITLE;
 CGSize  _CCWINDOWSIZE();
 UIColor* _CCColor();
 UIColor* _CCBtnColor();
+UIColor* _CCBlueColor();
