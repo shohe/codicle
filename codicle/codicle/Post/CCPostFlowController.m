@@ -8,6 +8,7 @@
 
 #import "CCPostFlowController.h"
 #import "CCPostPostViewController.h"
+#import "CCCameraRollCell.h"
 
 @interface CCPostFlowController ()<CCPostPostDelegate> {
     BOOL _isAnimated;
@@ -17,7 +18,7 @@
 
 @implementation CCPostFlowController
 
-static NSString * const reuseIdentifier = @"Cell";
+static NSString * const reuseIdentifier = @"CCCameraRollCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,6 +70,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }];
     
     _isAnimated = YES;
+    _datasource = CCCORE.cameraRollData;
 }
 
 
@@ -76,7 +78,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewWillAppear:animated];
 
     if (_isAnimated) {
-        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:99 inSection:0];
+        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:((int)[_datasource count]-1) inSection:0];
         [self.collectionView scrollToItemAtIndexPath:indexpath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
     }
 }
@@ -86,7 +88,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     if (_isAnimated) {
         float delay = 0;
-        for (int i=99-(int)[self.collectionView indexPathsForVisibleItems].count; i <= 99; i++) {
+        for (int i=((int)[_datasource count]-1)-(int)[self.collectionView indexPathsForVisibleItems].count; i <= ((int)[_datasource count]-1); i++) {
             NSIndexPath *indexpath = [NSIndexPath indexPathForRow:i inSection:0];
             UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexpath];
             
@@ -154,14 +156,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 100;
+    return [_datasource count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell
+    CCCameraRollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    cell.imageView.image = _datasource[indexPath.row][@"IMAGE"];
     
     return cell;
 }

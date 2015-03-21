@@ -15,5 +15,6 @@
 @interface CCPostFlowController : UICollectionViewController
 
 @property (nonatomic, strong) id<CCPostFlowDelegate>delegate;
+@property (nonatomic, strong) NSArray *datasource;
 
 @end
