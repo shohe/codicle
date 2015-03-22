@@ -12,6 +12,7 @@
 
 @interface CCPostFlowController ()<CCPostPostDelegate> {
     BOOL _isAnimated;
+    NSMutableArray *_selectedAry;
 }
 
 @end
@@ -24,6 +25,7 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     [super viewDidLoad];
     
     // init view
+    self.collectionView.allowsMultipleSelection = YES;
     [self.collectionView setDataSource:self];
     [self.collectionView setDelegate:self];
     
@@ -71,6 +73,7 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     
     _isAnimated = YES;
     _datasource = CCCORE.cameraRollData;
+    _selectedAry = [NSMutableArray array];
 }
 
 
@@ -164,44 +167,44 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     CCCameraRollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.imageView.image = _datasource[indexPath.row][@"IMAGE"];
     
+    if ([_selectedAry containsObject:indexPath]) {
+        cell.chkImage.backgroundColor = _CCBlueColor();
+        cell.maskView.alpha = .5f;
+        cell.indexPath = indexPath;
+        cell.isSelected = YES;
+    } else {
+        cell.chkImage.backgroundColor = [UIColor clearColor];
+        cell.maskView.alpha = 0;
+        cell.indexPath = nil;
+        cell.isSelected = NO;
+    }
     return cell;
 }
 
 
 #pragma mark <UICollectionViewDelegate>
 
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    cell.chkImage.backgroundColor = _CCBlueColor();
+    cell.maskView.alpha = .5f;
+    cell.indexPath = indexPath;
+    cell.isSelected = YES;
+    [_selectedAry addObject:indexPath];
+    CCLog(@"%@", _selectedAry);
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    cell.chkImage.backgroundColor = [UIColor clearColor];
+    cell.maskView.alpha = 0;
+    cell.indexPath = nil;
+    cell.isSelected = NO;
+    [_selectedAry removeObject:indexPath];
+    CCLog(@"%@", _selectedAry);
 }
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-   
     return CGSizeMake((_CCWINDOWSIZE().width-10*4)/3, (_CCWINDOWSIZE().width-10*4)/3);
 }
 
