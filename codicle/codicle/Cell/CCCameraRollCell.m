@@ -23,10 +23,16 @@
     [[_chkImage layer] setBorderWidth:1.5f];
     [[_chkImage layer] setBorderColor:[UIColor whiteColor].CGColor];
     _isSelected = NO;
+    _number = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _chkImage.frame.size.width, _chkImage.frame.size.height)];
+    _number.textColor = [UIColor whiteColor];
+    _number.textAlignment = NSTextAlignmentCenter;
+    _number.font = [UIFont fontWithName:@"HiraKakuProN-W6" size:10];
+    _number.text = @"";
     
     [self.contentView addSubview:_imageView];
     [self.contentView addSubview:_maskView];
     [self.contentView addSubview:_chkImage];
+    [_chkImage addSubview:_number];
 }
 
 

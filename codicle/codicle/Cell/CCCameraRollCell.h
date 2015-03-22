@@ -13,6 +13,7 @@
 @property (strong,nonatomic) UIImageView *imageView;
 @property (strong,nonatomic) UIImageView *chkImage;
 @property (strong,nonatomic) UIView *maskView;
+@property (strong,nonatomic) UILabel *number;
 @property (nonatomic) BOOL isSelected;
 @property NSIndexPath *indexPath;
 
