@@ -145,6 +145,13 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     
 }
 
+- (void)reloadNumber {
+    for (NSIndexPath *index in _selectedAry) {
+        CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:index];
+        cell.number.text = [NSString stringWithFormat:@"%ld", [_selectedAry indexOfObject:index]+1];
+    }
+}
+
 #pragma mark <CCPostPostDelegate>
 - (void)didPostCancel {
     [self pushCancel];
@@ -172,11 +179,13 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
         cell.maskView.alpha = .5f;
         cell.indexPath = indexPath;
         cell.isSelected = YES;
+        cell.number.text = [NSString stringWithFormat:@"%ld", [_selectedAry indexOfObject:indexPath]+1];
     } else {
         cell.chkImage.backgroundColor = [UIColor clearColor];
         cell.maskView.alpha = 0;
         cell.indexPath = nil;
         cell.isSelected = NO;
+        cell.number.text = @"";
     }
     return cell;
 }
@@ -191,7 +200,7 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     cell.indexPath = indexPath;
     cell.isSelected = YES;
     [_selectedAry addObject:indexPath];
-    CCLog(@"%@", _selectedAry);
+    cell.number.text = [NSString stringWithFormat:@"%ld", [_selectedAry indexOfObject:indexPath]+1];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -201,8 +210,11 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     cell.indexPath = nil;
     cell.isSelected = NO;
     [_selectedAry removeObject:indexPath];
-    CCLog(@"%@", _selectedAry);
+    cell.number.text = @"";
+    
+    [self reloadNumber];
 }
+
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake((_CCWINDOWSIZE().width-10*4)/3, (_CCWINDOWSIZE().width-10*4)/3);
