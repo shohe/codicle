@@ -14,6 +14,7 @@
     BOOL _isAnimated;
     NSMutableArray *_selectedAry;
     NSMutableArray *_selectImages;
+    NSMutableArray *_selectUrls;
 }
 
 @end
@@ -75,6 +76,8 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     _isAnimated = YES;
     _datasource = CCCORE.cameraRollData;
     _selectedAry = [NSMutableArray array];
+    _selectImages = [NSMutableArray array];
+    _selectUrls = [NSMutableArray array];
 }
 
 
@@ -129,31 +132,12 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
 }
 
 - (void)pushNext {
-    _selectImages = [NSMutableArray array];
-    for (NSIndexPath *index in _selectedAry) {
-        CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:index];
-        [CCCORE photoFromALAssets:cell.imagePath withCompletion:^(NSError *error, UIImage *image) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_selectImages addObject:image];
-                if ([_selectImages count] == [_selectedAry count]) {
-                    // alpha animation
-                    [UIView animateWithDuration:.15 animations:^{
-                        self.collectionView.alpha = 0;
-                    } completion:^(BOOL finished) {
-                        [UIView animateWithDuration:.1 delay:1 options:UIViewAnimationOptionCurveLinear animations:^{
-                            self.collectionView.alpha = 1;
-                        } completion:nil];
-                    }];
-                    
-                    // controller push
-                    CCPostPostViewController *postPostViewController =
-                    [self.storyboard instantiateViewControllerWithIdentifier:@"CCPostPostViewController"];
-                    postPostViewController.delegate = self;
-                    postPostViewController.selectImages = _selectImages;
-                    [self.navigationController pushViewController:postPostViewController animated:YES];
-                }
-            });
-        }];
+    if ([_selectImages count] == [_selectedAry count]) {
+        CCPostPostViewController *postPostViewController =
+        [self.storyboard instantiateViewControllerWithIdentifier:@"CCPostPostViewController"];
+        postPostViewController.delegate = self;
+        postPostViewController.selectImages = _selectImages;
+        [self.navigationController pushViewController:postPostViewController animated:YES];
     }
 }
 
@@ -161,6 +145,17 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     for (NSIndexPath *index in _selectedAry) {
         CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:index];
         cell.number.text = [NSString stringWithFormat:@"%ld", [_selectedAry indexOfObject:index]+1];
+    }
+}
+
+- (void)loadImageByPath {
+    [_selectImages removeAllObjects];
+    for (NSURL *url in _selectUrls) {
+        [CCCORE photoFromALAssets:url withCompletion:^(NSError *error, UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_selectImages addObject:image];
+            });
+        }];
     }
 }
 
@@ -213,7 +208,10 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     cell.indexPath = indexPath;
     cell.isSelected = YES;
     [_selectedAry addObject:indexPath];
+    [_selectUrls addObject:cell.imagePath];
     cell.number.text = [NSString stringWithFormat:@"%ld", [_selectedAry indexOfObject:indexPath]+1];
+    
+    [self loadImageByPath];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -223,9 +221,11 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     cell.indexPath = nil;
     cell.isSelected = NO;
     [_selectedAry removeObject:indexPath];
+    [_selectUrls removeObject:cell.imagePath];
     cell.number.text = @"";
     
     [self reloadNumber];
+    [self loadImageByPath];
 }
 
 
