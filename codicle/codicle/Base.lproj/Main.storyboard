@@ -291,10 +291,10 @@
             </objects>
             <point key="canvasLocation" x="1425" y="1600"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Post Navigation Controller-->
         <scene sceneID="S6Q-pb-AIu">
             <objects>
-                <navigationController storyboardIdentifier="PostNaviController" id="rur-Hr-W2s" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="PostNaviController" id="rur-Hr-W2s" customClass="CCPostNavigationController" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wrT-Tx-cd5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

@@ -19,6 +19,7 @@
 		090116AB1A8680870035872A /* CCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090116AA1A8680870035872A /* CCBaseViewController.m */; };
 		090116AF1A8681550035872A /* CCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090116AE1A8681550035872A /* CCHomeViewController.m */; };
 		090116B61A8694230035872A /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 090116B51A8694230035872A /* Constant.m */; };
+		090D1C491AC1805D001F92C7 /* CCPostNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090D1C481AC1805D001F92C7 /* CCPostNavigationController.m */; };
 		091E80D51A8B630B00AF52F7 /* SEARCH_VIEW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 091E80D41A8B630B00AF52F7 /* SEARCH_VIEW.jpg */; };
 		091E80D91A8B63ED00AF52F7 /* CCSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 091E80D81A8B63ED00AF52F7 /* CCSearchViewController.m */; };
 		095B2E191A88D5B9005EA08B /* fashion.gif in Resources */ = {isa = PBXBuildFile; fileRef = 095B2E181A88D5B9005EA08B /* fashion.gif */; };
@@ -94,6 +95,8 @@
 		090116B41A8694230035872A /* Constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
 		090116B51A8694230035872A /* Constant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constant.m; sourceTree = "<group>"; };
 		090116B71A8695E20035872A /* Codicle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Codicle-Prefix.pch"; sourceTree = "<group>"; };
+		090D1C471AC1805D001F92C7 /* CCPostNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPostNavigationController.h; sourceTree = "<group>"; };
+		090D1C481AC1805D001F92C7 /* CCPostNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPostNavigationController.m; sourceTree = "<group>"; };
 		091E80D41A8B630B00AF52F7 /* SEARCH_VIEW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SEARCH_VIEW.jpg; sourceTree = "<group>"; };
 		091E80D71A8B63ED00AF52F7 /* CCSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSearchViewController.h; sourceTree = "<group>"; };
 		091E80D81A8B63ED00AF52F7 /* CCSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSearchViewController.m; sourceTree = "<group>"; };
@@ -313,6 +316,8 @@
 				098AF8A51AB9E3C000B99049 /* CCPostFlowController.m */,
 				09ACAE6A1ABBB780000A9C69 /* CCPostPostViewController.h */,
 				09ACAE6B1ABBB780000A9C69 /* CCPostPostViewController.m */,
+				090D1C471AC1805D001F92C7 /* CCPostNavigationController.h */,
+				090D1C481AC1805D001F92C7 /* CCPostNavigationController.m */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -552,6 +557,7 @@
 				09CC26881AA1748D00C0D514 /* FXBlurView.m in Sources */,
 				090116811A867CAC0035872A /* AppDelegate.m in Sources */,
 				090116AB1A8680870035872A /* CCBaseViewController.m in Sources */,
+				090D1C491AC1805D001F92C7 /* CCPostNavigationController.m in Sources */,
 				097D69B41A9444EC00D04B45 /* CCCore.m in Sources */,
 				090116A71A867F7C0035872A /* CCRootController.m in Sources */,
 				095B2E211A88D680005EA08B /* FLAnimatedImageView.m in Sources */,
