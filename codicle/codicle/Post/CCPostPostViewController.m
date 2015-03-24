@@ -52,6 +52,20 @@
     [self setScrollView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -119,6 +133,45 @@
     _textField.delegate = self;
     _textField.placeholder = @"Caption";
     _textField.backgroundColor = _CCBlueColor();
+}
+
+- (void)keyboardWillShown:(NSNotification *)notification {
+    NSDictionary *userInfo = [notification userInfo];
+    CGRect keyboardRect = [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardRect = [_postViewFrame convertRect:keyboardRect fromCoordinateSpace:nil];
+    
+    CGFloat underScrollView = _scrollView.contentSize.height+_scrollView.frame.origin.y;
+    CGFloat movePosition = 0;
+    if (keyboardRect.origin.y < underScrollView) {
+        movePosition = underScrollView - keyboardRect.origin.y - 20;
+    }
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
+    [UIView setAnimationCurve:[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue]];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [_scrollView setFrame:CGRectMake(_scrollView.frame.origin.x,
+                                     _scrollView.frame.origin.y,
+                                     _scrollView.frame.size.width,
+                                     _scrollView.frame.size.height-keyboardRect.size.height)];
+    [_scrollView setContentOffset:CGPointMake(0, movePosition) animated:NO];
+    [UIView commitAnimations];
+}
+
+- (void)keyboardWillHidden:(NSNotification *)notification {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:[notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
+    [UIView setAnimationCurve:[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue]];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [_scrollView setFrame:CGRectMake(0, 59, _CCWINDOWSIZE().width, _CCWINDOWSIZE().height-39)];
+    _scrollView.contentSize = _postViewFrame.frame.size;
+    _scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-59, 0, 20, 0);
+    [UIView commitAnimations];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [_textField resignFirstResponder];
+    return YES;
 }
 
 @end
