@@ -24,6 +24,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    UIView *theWindow = self.view;
+    if (animated) {
+        CATransition *animation = [CATransition animation];
+        [animation setDuration:0.3f];
+        [animation setType:kCATransitionPush];
+        [animation setSubtype:kCATransitionFromRight];
+        [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+        [[theWindow layer] addAnimation:animation forKey:@""];
+    } else {
+        [super pushViewController:viewController animated:NO];
+    }
+    [super pushViewController:viewController animated:NO];
+}
+
 /*
 #pragma mark - Navigation
 
