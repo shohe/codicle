@@ -10,13 +10,12 @@
 #import "CCPostFlowController.h"
 #import "FLAnimatedImageView.h"
 
-@interface CCPostPostViewController () {
+@interface CCPostPostViewController ()<UITextFieldDelegate> {
     UIScrollView *_scrollView;
-    UIView *_postViewFrame;
-    CGPoint _originPoint;
-    CGPoint _touchPoint;
     
+    UIView *_postViewFrame;
     FLAnimatedImageView *_postImageView;
+    UITextField *_textField;
 }
 
 @end
@@ -77,44 +76,49 @@
     [_delegate didPostCancel];
 }
 
-//- (void)createPostViewFrame {
-//    UIImage *image = _selectImages[0];
-//    float height = image.size.height*_CCWINDOWSIZE().width/image.size.width;
-//    _postViewFrame = [[UIView alloc] initWithFrame:CGRectMake(0, 79, _CCWINDOWSIZE().width, height+100)];
-//    _postViewFrame.backgroundColor = [UIColor whiteColor];
-//    _originPoint = _postViewFrame.center;
-//    [self.view addSubview:_postViewFrame];
-//    
-//    _postImageView = [[FLAnimatedImageView alloc] initWithFrame: CGRectMake(0, 0, _CCWINDOWSIZE().width, height)];
-//    _postImageView.backgroundColor = _CCBlueColor();
-//    
-//    // normal
-//    if ([_selectImages count] < 2) {
-//        _postImageView.image = _selectImages[0];
-//    }
-//    // gif
-//    else {
-//        _postImageView.image = _selectImages[0];
-//    }
-//    
-//    [_postViewFrame addSubview:_postImageView];
-//}
 - (void)setScrollView {
+    [self setPostView];
+    
     _scrollView = [[UIScrollView alloc] initWithFrame:
                    CGRectMake(0, 59, _CCWINDOWSIZE().width, _CCWINDOWSIZE().height-39)];
-    _scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-59, 0, 0, 0);
+    _scrollView.contentSize = _postViewFrame.frame.size;
+    _scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-59, 0, 20, 0);
     _scrollView.alwaysBounceVertical = YES;
+    [_scrollView addSubview:_postViewFrame];
     [self.view addSubview:_scrollView];
 }
 
-- (void)createScrollView {
+- (void)setPostView {
+    [self setImageView];
+    [self setTextField];
+    
+    _postViewFrame = [[UIView alloc] initWithFrame:
+                      CGRectMake(0, -39, _CCWINDOWSIZE().width, _postImageView.frame.size.height+100)];
+    _postViewFrame.backgroundColor = [UIColor whiteColor];
+    [_postViewFrame addSubview:_postImageView];
+    [_postViewFrame addSubview:_textField];
+}
+
+- (void)setImageView {
     UIImage *image = _selectImages[0];
     float height = image.size.height*_CCWINDOWSIZE().width/image.size.width;
-    _postViewFrame = [[UIView alloc] initWithFrame:CGRectMake(0, -39, _CCWINDOWSIZE().width, height+100)];
-    _postViewFrame.backgroundColor = [UIColor whiteColor];
-    
-    _scrollView.contentSize = _postViewFrame.frame.size;
-    [_scrollView addSubview:_postViewFrame];
+    _postImageView = [[FLAnimatedImageView alloc] initWithFrame: CGRectMake(0, 0, _CCWINDOWSIZE().width, height)];
+    // normal
+    if ([_selectImages count] < 2) {
+        _postImageView.image = _selectImages[0];
+    }
+    // gif
+    else {
+        _postImageView.backgroundColor = _CCBlueColor();
+    }
+}
+
+- (void)setTextField {
+    _textField = [[UITextField alloc] initWithFrame:
+                  CGRectMake(10, _postImageView.frame.size.height+10, _CCWINDOWSIZE().width-20, 30)];
+    _textField.delegate = self;
+    _textField.placeholder = @"Caption";
+    _textField.backgroundColor = _CCBlueColor();
 }
 
 @end
