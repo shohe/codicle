@@ -28,7 +28,7 @@
     UIView *theWindow = self.view;
     if (animated) {
         CATransition *animation = [CATransition animation];
-        [animation setDuration:0.3f];
+        [animation setDuration:.4f];
         [animation setType:kCATransitionPush];
         [animation setSubtype:kCATransitionFromRight];
         [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
