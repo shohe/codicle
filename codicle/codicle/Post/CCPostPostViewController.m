@@ -11,6 +11,7 @@
 #import "FLAnimatedImageView.h"
 
 @interface CCPostPostViewController () {
+    UIScrollView *_scrollView;
     UIView *_postViewFrame;
     CGPoint _originPoint;
     CGPoint _touchPoint;
@@ -48,7 +49,8 @@
     postBtn.tintColor = _CCBlueColor();
     self.navigationItem.rightBarButtonItem = postBtn;
     
-    [self createPostViewFrame];
+    
+    [self setScrollView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,50 +77,44 @@
     [_delegate didPostCancel];
 }
 
-- (void)createPostViewFrame {
+//- (void)createPostViewFrame {
+//    UIImage *image = _selectImages[0];
+//    float height = image.size.height*_CCWINDOWSIZE().width/image.size.width;
+//    _postViewFrame = [[UIView alloc] initWithFrame:CGRectMake(0, 79, _CCWINDOWSIZE().width, height+100)];
+//    _postViewFrame.backgroundColor = [UIColor whiteColor];
+//    _originPoint = _postViewFrame.center;
+//    [self.view addSubview:_postViewFrame];
+//    
+//    _postImageView = [[FLAnimatedImageView alloc] initWithFrame: CGRectMake(0, 0, _CCWINDOWSIZE().width, height)];
+//    _postImageView.backgroundColor = _CCBlueColor();
+//    
+//    // normal
+//    if ([_selectImages count] < 2) {
+//        _postImageView.image = _selectImages[0];
+//    }
+//    // gif
+//    else {
+//        _postImageView.image = _selectImages[0];
+//    }
+//    
+//    [_postViewFrame addSubview:_postImageView];
+//}
+- (void)setScrollView {
+    _scrollView = [[UIScrollView alloc] initWithFrame:
+                   CGRectMake(0, 59, _CCWINDOWSIZE().width, _CCWINDOWSIZE().height-39)];
+    _scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-59, 0, 0, 0);
+    _scrollView.alwaysBounceVertical = YES;
+    [self.view addSubview:_scrollView];
+}
+
+- (void)createScrollView {
     UIImage *image = _selectImages[0];
     float height = image.size.height*_CCWINDOWSIZE().width/image.size.width;
-    _postViewFrame = [[UIView alloc] initWithFrame:CGRectMake(0, 79, _CCWINDOWSIZE().width, height+100)];
+    _postViewFrame = [[UIView alloc] initWithFrame:CGRectMake(0, -39, _CCWINDOWSIZE().width, height+100)];
     _postViewFrame.backgroundColor = [UIColor whiteColor];
-    _originPoint = _postViewFrame.center;
-    [self.view addSubview:_postViewFrame];
     
-    _postImageView = [[FLAnimatedImageView alloc] initWithFrame: CGRectMake(0, 0, _CCWINDOWSIZE().width, height)];
-    _postImageView.backgroundColor = _CCBlueColor();
-    
-    // normal
-    if ([_selectImages count] < 2) {
-        _postImageView.image = _selectImages[0];
-    }
-    // gif
-    else {
-        _postImageView.image = _selectImages[0];
-    }
-    
-    [_postViewFrame addSubview:_postImageView];
-}
-
-
-
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    _touchPoint = [((UITouch*)[touches anyObject])locationInView:self.view];
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    CGPoint point = [((UITouch*)[touches anyObject])locationInView:self.view];
-    float moveY = (point.y-_touchPoint.y)*.5f;
-    [_postViewFrame setCenter:CGPointMake(_originPoint.x, _originPoint.y+moveY)];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [UIView animateWithDuration:.3f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        [_postViewFrame setCenter:CGPointMake(_originPoint.x, _originPoint.y-3)];
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:.1f animations:^{
-            [_postViewFrame setCenter:_originPoint];
-        }];
-    }];
+    _scrollView.contentSize = _postViewFrame.frame.size;
+    [_scrollView addSubview:_postViewFrame];
 }
 
 @end
