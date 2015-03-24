@@ -15,5 +15,6 @@
 @interface CCPostPostViewController : CCBaseViewController
 
 @property (nonatomic, strong) id<CCPostPostDelegate>delegate;
+@property (nonatomic, strong) NSArray *selectImages;
 
 @end

@@ -8,11 +8,14 @@
 
 #import "CCPostPostViewController.h"
 #import "CCPostFlowController.h"
+#import "FLAnimatedImageView.h"
 
 @interface CCPostPostViewController () {
     UIView *_postViewFrame;
     CGPoint _originPoint;
     CGPoint _touchPoint;
+    
+    FLAnimatedImageView *_postImageView;
 }
 
 @end
@@ -37,8 +40,6 @@
      [UIImage new] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
-    
-    
     // right button
     UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"Post"
                                                                 style:UIBarButtonItemStylePlain
@@ -57,27 +58,44 @@
 
 
 - (void)pushPost {
-    [UIView animateWithDuration:.3f animations:^{
-        [_postViewFrame setCenter:CGPointMake(_originPoint.x, _originPoint.y+10)];
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:.3f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            [_postViewFrame setCenter:CGPointMake(_originPoint.x, _postViewFrame.frame.size.height*-1)];
-        } completion:^(BOOL finished) {
-            CCLog(@"TODO: post to server method");
-            [_delegate didPostCancel];
-        }];
-    }];
+//    // animation
+//    [UIView animateWithDuration:.3f animations:^{
+//        [_postViewFrame setCenter:CGPointMake(_originPoint.x, _originPoint.y+10)];
+//    } completion:^(BOOL finished) {
+//        [UIView animateWithDuration:.3f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+//            [_postViewFrame setCenter:CGPointMake(_originPoint.x, _postViewFrame.frame.size.height*-1)];
+//        } completion:^(BOOL finished) {
+//            CCLog(@"TODO: post to server method");
+//            [_delegate didPostCancel];
+//        }];
+//    }];
+    
+    // no animation
+    CCLog(@"TODO: post to server method");
+    [_delegate didPostCancel];
 }
 
 - (void)createPostViewFrame {
-    _postViewFrame = [[UIView alloc] initWithFrame:CGRectMake(0, 79, _CCWINDOWSIZE().width, _CCWINDOWSIZE().width+100)];
+    UIImage *image = _selectImages[0];
+    float height = image.size.height*_CCWINDOWSIZE().width/image.size.width;
+    _postViewFrame = [[UIView alloc] initWithFrame:CGRectMake(0, 79, _CCWINDOWSIZE().width, height+100)];
     _postViewFrame.backgroundColor = [UIColor whiteColor];
     _originPoint = _postViewFrame.center;
     [self.view addSubview:_postViewFrame];
     
-    UIView *testImageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _CCWINDOWSIZE().width, _CCWINDOWSIZE().width)];
-    testImageView.backgroundColor = _CCBlueColor();
-    [_postViewFrame addSubview:testImageView];
+    _postImageView = [[FLAnimatedImageView alloc] initWithFrame: CGRectMake(0, 0, _CCWINDOWSIZE().width, height)];
+    _postImageView.backgroundColor = _CCBlueColor();
+    
+    // normal
+    if ([_selectImages count] < 2) {
+        _postImageView.image = _selectImages[0];
+    }
+    // gif
+    else {
+        _postImageView.image = _selectImages[0];
+    }
+    
+    [_postViewFrame addSubview:_postImageView];
 }
 
 
