@@ -13,6 +13,7 @@
 @interface CCPostFlowController ()<CCPostPostDelegate> {
     BOOL _isAnimated;
     NSMutableArray *_selectedAry;
+    NSMutableArray *_selectImages;
 }
 
 @end
@@ -128,21 +129,32 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
 }
 
 - (void)pushNext {
-    
-    CCPostPostViewController *postPostViewController =
-    [self.storyboard instantiateViewControllerWithIdentifier:@"CCPostPostViewController"];
-    postPostViewController.delegate = self;
-    [self.navigationController pushViewController:postPostViewController animated:YES];
-    
-    
-    [UIView animateWithDuration:.15 animations:^{
-        self.collectionView.alpha = 0;
-    } completion:^(BOOL finished) {
-        [UIView animateWithDuration:.1 delay:1 options:UIViewAnimationOptionCurveLinear animations:^{
-            self.collectionView.alpha = 1;
-        } completion:nil];
-    }];
-    
+    _selectImages = [NSMutableArray array];
+    for (NSIndexPath *index in _selectedAry) {
+        CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:index];
+        [CCCORE photoFromALAssets:cell.imagePath withCompletion:^(NSError *error, UIImage *image) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_selectImages addObject:image];
+                if ([_selectImages count] == [_selectedAry count]) {
+                    // alpha animation
+                    [UIView animateWithDuration:.15 animations:^{
+                        self.collectionView.alpha = 0;
+                    } completion:^(BOOL finished) {
+                        [UIView animateWithDuration:.1 delay:1 options:UIViewAnimationOptionCurveLinear animations:^{
+                            self.collectionView.alpha = 1;
+                        } completion:nil];
+                    }];
+                    
+                    // controller push
+                    CCPostPostViewController *postPostViewController =
+                    [self.storyboard instantiateViewControllerWithIdentifier:@"CCPostPostViewController"];
+                    postPostViewController.delegate = self;
+                    postPostViewController.selectImages = _selectImages;
+                    [self.navigationController pushViewController:postPostViewController animated:YES];
+                }
+            });
+        }];
+    }
 }
 
 - (void)reloadNumber {
@@ -173,6 +185,7 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     
     CCCameraRollCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.imageView.image = _datasource[indexPath.row][@"IMAGE"];
+    cell.imagePath = _datasource[indexPath.row][@"URL"];
     
     if ([_selectedAry containsObject:indexPath]) {
         cell.chkImage.backgroundColor = _CCBlueColor();
