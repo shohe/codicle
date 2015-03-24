@@ -10,12 +10,13 @@
 #import "CCPostFlowController.h"
 #import "FLAnimatedImageView.h"
 
-@interface CCPostPostViewController ()<UITextFieldDelegate> {
+@interface CCPostPostViewController ()<UITextFieldDelegate, UIGestureRecognizerDelegate> {
     UIScrollView *_scrollView;
     
     UIView *_postViewFrame;
     FLAnimatedImageView *_postImageView;
     UITextField *_textField;
+    UITapGestureRecognizer *_singleTap;
 }
 
 @end
@@ -48,6 +49,11 @@
     postBtn.tintColor = _CCBlueColor();
     self.navigationItem.rightBarButtonItem = postBtn;
     
+    // set gesture
+    _singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSingleTap:)];
+    _singleTap.delegate = self;
+    _singleTap.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:_singleTap];
     
     [self setScrollView];
 }
@@ -87,6 +93,9 @@
     
     // no animation
     CCLog(@"TODO: post to server method");
+    if (_textField.isFirstResponder) {
+        [_textField resignFirstResponder];
+    }
     [_delegate didPostCancel];
 }
 
@@ -170,7 +179,22 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    return YES;
+}
+
+- (void)onSingleTap:(UITapGestureRecognizer *)recognizer {
     [_textField resignFirstResponder];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if (gestureRecognizer == _singleTap) {
+        if (_textField.isFirstResponder) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
     return YES;
 }
 
