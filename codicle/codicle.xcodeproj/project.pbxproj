@@ -20,6 +20,7 @@
 		090116AF1A8681550035872A /* CCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090116AE1A8681550035872A /* CCHomeViewController.m */; };
 		090116B61A8694230035872A /* Constant.m in Sources */ = {isa = PBXBuildFile; fileRef = 090116B51A8694230035872A /* Constant.m */; };
 		090D1C491AC1805D001F92C7 /* CCPostNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 090D1C481AC1805D001F92C7 /* CCPostNavigationController.m */; };
+		090D1C4D1AC1EEF2001F92C7 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 090D1C4C1AC1EEF2001F92C7 /* UIPlaceHolderTextView.m */; };
 		091E80D51A8B630B00AF52F7 /* SEARCH_VIEW.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 091E80D41A8B630B00AF52F7 /* SEARCH_VIEW.jpg */; };
 		091E80D91A8B63ED00AF52F7 /* CCSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 091E80D81A8B63ED00AF52F7 /* CCSearchViewController.m */; };
 		095B2E191A88D5B9005EA08B /* fashion.gif in Resources */ = {isa = PBXBuildFile; fileRef = 095B2E181A88D5B9005EA08B /* fashion.gif */; };
@@ -97,6 +98,8 @@
 		090116B71A8695E20035872A /* Codicle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Codicle-Prefix.pch"; sourceTree = "<group>"; };
 		090D1C471AC1805D001F92C7 /* CCPostNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPostNavigationController.h; sourceTree = "<group>"; };
 		090D1C481AC1805D001F92C7 /* CCPostNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPostNavigationController.m; sourceTree = "<group>"; };
+		090D1C4B1AC1EEF2001F92C7 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
+		090D1C4C1AC1EEF2001F92C7 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		091E80D41A8B630B00AF52F7 /* SEARCH_VIEW.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SEARCH_VIEW.jpg; sourceTree = "<group>"; };
 		091E80D71A8B63ED00AF52F7 /* CCSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSearchViewController.h; sourceTree = "<group>"; };
 		091E80D81A8B63ED00AF52F7 /* CCSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSearchViewController.m; sourceTree = "<group>"; };
@@ -278,6 +281,15 @@
 			path = Constant;
 			sourceTree = "<group>";
 		};
+		090D1C4A1AC1EECB001F92C7 /* UIPlaceHolderTextView */ = {
+			isa = PBXGroup;
+			children = (
+				090D1C4B1AC1EEF2001F92C7 /* UIPlaceHolderTextView.h */,
+				090D1C4C1AC1EEF2001F92C7 /* UIPlaceHolderTextView.m */,
+			);
+			path = UIPlaceHolderTextView;
+			sourceTree = "<group>";
+		};
 		091E80D61A8B635E00AF52F7 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +302,7 @@
 		095B2E1A1A88D65E005EA08B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				090D1C4A1AC1EECB001F92C7 /* UIPlaceHolderTextView */,
 				09CC26851AA1748D00C0D514 /* FXBlurView */,
 				095B2E1B1A88D680005EA08B /* FLAnimatedImage */,
 			);
@@ -565,6 +578,7 @@
 				0901167E1A867CAC0035872A /* main.m in Sources */,
 				09E8850F1AAF44860028687C /* CCSetSearchCell.m in Sources */,
 				09D1E5271AADCD4C007E4941 /* CCTitleSearchCell.m in Sources */,
+				090D1C4D1AC1EEF2001F92C7 /* UIPlaceHolderTextView.m in Sources */,
 				09F761101A9D5BFC004A0734 /* CCSearchCell.m in Sources */,
 				091E80D91A8B63ED00AF52F7 /* CCSearchViewController.m in Sources */,
 				095B2E201A88D680005EA08B /* FLAnimatedImage.m in Sources */,
