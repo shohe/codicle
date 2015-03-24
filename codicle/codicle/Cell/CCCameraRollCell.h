@@ -14,6 +14,7 @@
 @property (strong,nonatomic) UIImageView *chkImage;
 @property (strong,nonatomic) UIView *maskView;
 @property (strong,nonatomic) UILabel *number;
+@property (strong,nonatomic) NSURL *imagePath;
 @property (nonatomic) BOOL isSelected;
 @property NSIndexPath *indexPath;
 
