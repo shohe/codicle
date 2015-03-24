@@ -132,7 +132,7 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
 }
 
 - (void)pushNext {
-    if ([_selectImages count] == [_selectedAry count]) {
+    if ([_selectImages count] > 0 && [_selectImages count] == [_selectedAry count]) {
         CCPostPostViewController *postPostViewController =
         [self.storyboard instantiateViewControllerWithIdentifier:@"CCPostPostViewController"];
         postPostViewController.delegate = self;
