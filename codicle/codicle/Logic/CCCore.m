@@ -143,6 +143,21 @@
     });
 }
 
+- (void)photoFromALAssets:(NSURL*)url withCompletion:(CCImageByUrlCompletion)completion {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        __block UIImage *image = nil;
+        [library assetForURL:url resultBlock:^(ALAsset *asset) {
+            ALAssetRepresentation *representation = [asset defaultRepresentation];
+            image = [UIImage imageWithCGImage:representation.fullResolutionImage scale:representation.scale orientation:(UIImageOrientation)representation.orientation];
+            completion(nil, image);
+        } failureBlock:^(NSError *error) {
+            CCLog(@"%@", error);
+            completion(error, image);
+        }];
+    });
+}
+
 /*****************************************/
 #pragma mark - test data
 /*****************************************/

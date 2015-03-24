@@ -10,6 +10,7 @@
 #import "FLAnimatedImage.h"
 
 typedef void (^CCLoadCameraRollCompletion)(NSError *error, NSArray *mary);
+typedef void (^CCImageByUrlCompletion)(NSError *error, UIImage *image);
 typedef void (^CCLoadDataCompletion)(NSError *error , NSMutableArray *mary);
 typedef void (^CCLoadGifCompletion)(FLAnimatedImage * image);
 typedef void (^CCLoadImgCompletion)(UIImage * image);
@@ -29,6 +30,7 @@ typedef void (^CCLoadImgCompletion)(UIImage * image);
 - (void)gifImageAtURL:(NSString*)url completion:(CCLoadGifCompletion)completion;
 - (void)imageAtURL:(NSString*)url completion:(CCLoadImgCompletion)completion;
 - (void)loadCameraRollListWithCompletion:(CCLoadCameraRollCompletion)completion;
+- (void)photoFromALAssets:(NSURL*)url withCompletion:(CCImageByUrlCompletion)completion;
 
 /*****************************************/
 #pragma mark - test data
