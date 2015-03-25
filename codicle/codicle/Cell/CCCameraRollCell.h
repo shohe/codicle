@@ -12,6 +12,7 @@
 
 @property (strong,nonatomic) UIImageView *imageView;
 @property (strong,nonatomic) UIImageView *chkImage;
+@property (strong,nonatomic) UIImageView *chkMark;
 @property (strong,nonatomic) UIView *maskView;
 @property (strong,nonatomic) UILabel *number;
 @property (strong,nonatomic) NSURL *imagePath;

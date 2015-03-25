@@ -17,12 +17,22 @@
     _maskView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, (_CCWINDOWSIZE().width-10*4)/3, (_CCWINDOWSIZE().width-10*4)/3)];
     _maskView.backgroundColor = [UIColor whiteColor];
     _maskView.alpha = 0;
+    
+    
     _chkImage = [[UIImageView alloc] initWithFrame:CGRectMake(_imageView.frame.size.width-(_imageView.frame.size.width/4)-5, 5, _imageView.frame.size.width/4, _imageView.frame.size.width/4)];
     _chkImage.clipsToBounds = YES;
     _chkImage.layer.cornerRadius = _chkImage.frame.size.width/2;
     [[_chkImage layer] setBorderWidth:1.5f];
     [[_chkImage layer] setBorderColor:[UIColor whiteColor].CGColor];
     _isSelected = NO;
+    
+    
+    _chkMark = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, _chkImage.frame.size.width, _chkImage.frame.size.height)];
+    _chkMark.clipsToBounds = YES;
+    _chkMark.layer.cornerRadius = _chkMark.frame.size.width/2;
+    _chkMark.image = [UIImage imageNamed:@"check"];
+    [_chkImage addSubview:_chkMark];
+    
     _number = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _chkImage.frame.size.width, _chkImage.frame.size.height)];
     _number.textColor = [UIColor whiteColor];
     _number.textAlignment = NSTextAlignmentCenter;
