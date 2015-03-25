@@ -10,13 +10,14 @@
 #import "CCPostFlowController.h"
 #import "FLAnimatedImageView.h"
 #import "UIPlaceHolderTextView.h"
+#import "YAPGif.h"
 
 @interface CCPostPostViewController ()<UIGestureRecognizerDelegate, UITextViewDelegate> {
     UIScrollView *_scrollView;
     
     UIView *_postViewFrame;
     UIView *_userInfoView;
-    FLAnimatedImageView *_postImageView;
+    UIImageView *_postImageView;
     UIPlaceHolderTextView *_textField;
     UITapGestureRecognizer *_singleTap;
     BOOL _isAnimKeyboard;
@@ -134,15 +135,22 @@
 - (void)setImageView {
     UIImage *image = _selectImages[0];
     float height = image.size.height*_CCWINDOWSIZE().width/image.size.width;
-    _postImageView = [[FLAnimatedImageView alloc] initWithFrame: CGRectMake(0, 0, _CCWINDOWSIZE().width, height)];
+    _postImageView = [[UIImageView alloc] initWithFrame: CGRectMake(0, 0, _CCWINDOWSIZE().width, height)];
     // normal
     if ([_selectImages count] < 2) {
         _postImageView.image = _selectImages[0];
     }
     // gif
     else {
-        _postImageView.backgroundColor = _CCBlueColor();
+        _postImageView.image = [self exportAnimatedGif:_selectImages].image;
     }
+}
+
+- (YAPGif *)exportAnimatedGif:(NSArray *)images {
+    YAPGif *gif  = [[YAPGif alloc]initWithImages:images];
+    gif.delay    = [NSNumber numberWithFloat:.5f];
+    
+    return gif;
 }
 
 - (void)setTextField {

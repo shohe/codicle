@@ -12,6 +12,7 @@
 
 @interface CCPostFlowController ()<CCPostPostDelegate> {
     BOOL _isAnimated;
+    UIBarButtonItem *_nextBtn;
     NSMutableArray *_selectedAry;
     NSMutableArray *_selectImages;
     NSMutableArray *_selectUrls;
@@ -55,12 +56,12 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     self.navigationItem.leftBarButtonItem = cancelBtn;
     
     // right button
-    UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"Next"
-                                                                style:UIBarButtonItemStylePlain
-                                                               target:self
-                                                               action:@selector(pushNext)];
-    postBtn.tintColor = [UIColor grayColor];
-    self.navigationItem.rightBarButtonItem = postBtn;
+    _nextBtn = [[UIBarButtonItem alloc] initWithTitle:@"Next"
+                                                style:UIBarButtonItemStylePlain
+                                               target:self
+                                               action:@selector(pushNext)];
+    _nextBtn.tintColor = [UIColor grayColor];
+    self.navigationItem.rightBarButtonItem = _nextBtn;
     
     // back button.
     UIBarButtonItem *backBtn = [[UIBarButtonItem alloc] init];
@@ -202,6 +203,8 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
 #pragma mark <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    _nextBtn.tintColor = _CCBlueColor();
+    
     if ([_selectedAry count] < 5) {
         CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
         cell.chkImage.backgroundColor = _CCBlueColor();
@@ -227,6 +230,7 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     [_selectedAry removeObject:indexPath];
     [_selectUrls removeObject:cell.imagePath];
     cell.number.text = @"";
+    _nextBtn.tintColor = ([_selectedAry count] < 1) ? [UIColor grayColor] : _CCBlueColor();
     
     [self reloadNumber];
     [self loadImageByPath];

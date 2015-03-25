@@ -63,6 +63,9 @@
 		09F08E371AC2C477002E6205 /* photo_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F08E361AC2C477002E6205 /* photo_icon@2x.png */; };
 		09F08E391AC2C65F002E6205 /* gif_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F08E381AC2C65F002E6205 /* gif_icon@2x.png */; };
 		09F08E3D1AC2E90A002E6205 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 09F08E3C1AC2E90A002E6205 /* check@2x.png */; };
+		09F08E461AC2F21A002E6205 /* YAPGif.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F08E411AC2F21A002E6205 /* YAPGif.m */; };
+		09F08E471AC2F21A002E6205 /* YLGIFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F08E431AC2F21A002E6205 /* YLGIFImage.m */; };
+		09F08E481AC2F21A002E6205 /* YLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F08E451AC2F21A002E6205 /* YLImageView.m */; };
 		09F761101A9D5BFC004A0734 /* CCSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09F7610F1A9D5BFC004A0734 /* CCSearchCell.m */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +163,13 @@
 		09F08E361AC2C477002E6205 /* photo_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_icon@2x.png"; sourceTree = "<group>"; };
 		09F08E381AC2C65F002E6205 /* gif_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gif_icon@2x.png"; sourceTree = "<group>"; };
 		09F08E3C1AC2E90A002E6205 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		09F08E3F1AC2F21A002E6205 /* YAPGif-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YAPGif-Prefix.pch"; sourceTree = "<group>"; };
+		09F08E401AC2F21A002E6205 /* YAPGif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAPGif.h; sourceTree = "<group>"; };
+		09F08E411AC2F21A002E6205 /* YAPGif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAPGif.m; sourceTree = "<group>"; };
+		09F08E421AC2F21A002E6205 /* YLGIFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLGIFImage.h; sourceTree = "<group>"; };
+		09F08E431AC2F21A002E6205 /* YLGIFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLGIFImage.m; sourceTree = "<group>"; };
+		09F08E441AC2F21A002E6205 /* YLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLImageView.h; sourceTree = "<group>"; };
+		09F08E451AC2F21A002E6205 /* YLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLImageView.m; sourceTree = "<group>"; };
 		09F7610E1A9D5BFC004A0734 /* CCSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSearchCell.h; sourceTree = "<group>"; };
 		09F7610F1A9D5BFC004A0734 /* CCSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSearchCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -308,6 +318,7 @@
 		095B2E1A1A88D65E005EA08B /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				09F08E3E1AC2F21A002E6205 /* YAPGif */,
 				090D1C4A1AC1EECB001F92C7 /* UIPlaceHolderTextView */,
 				09CC26851AA1748D00C0D514 /* FXBlurView */,
 				095B2E1B1A88D680005EA08B /* FLAnimatedImage */,
@@ -449,6 +460,20 @@
 			path = Post;
 			sourceTree = "<group>";
 		};
+		09F08E3E1AC2F21A002E6205 /* YAPGif */ = {
+			isa = PBXGroup;
+			children = (
+				09F08E3F1AC2F21A002E6205 /* YAPGif-Prefix.pch */,
+				09F08E401AC2F21A002E6205 /* YAPGif.h */,
+				09F08E411AC2F21A002E6205 /* YAPGif.m */,
+				09F08E421AC2F21A002E6205 /* YLGIFImage.h */,
+				09F08E431AC2F21A002E6205 /* YLGIFImage.m */,
+				09F08E441AC2F21A002E6205 /* YLImageView.h */,
+				09F08E451AC2F21A002E6205 /* YLImageView.m */,
+			);
+			path = YAPGif;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -586,6 +611,8 @@
 				090116B61A8694230035872A /* Constant.m in Sources */,
 				095BF2041AB96D9600C7C0AC /* CCPostViewController.m in Sources */,
 				09998AE11AA6B8A600C9A9D3 /* CCUserViewController.m in Sources */,
+				09F08E481AC2F21A002E6205 /* YLImageView.m in Sources */,
+				09F08E471AC2F21A002E6205 /* YLGIFImage.m in Sources */,
 				09ACAE6C1ABBB780000A9C69 /* CCPostPostViewController.m in Sources */,
 				09CC26881AA1748D00C0D514 /* FXBlurView.m in Sources */,
 				090116811A867CAC0035872A /* AppDelegate.m in Sources */,
@@ -601,6 +628,7 @@
 				090D1C4D1AC1EEF2001F92C7 /* UIPlaceHolderTextView.m in Sources */,
 				09F761101A9D5BFC004A0734 /* CCSearchCell.m in Sources */,
 				091E80D91A8B63ED00AF52F7 /* CCSearchViewController.m in Sources */,
+				09F08E461AC2F21A002E6205 /* YAPGif.m in Sources */,
 				095B2E201A88D680005EA08B /* FLAnimatedImage.m in Sources */,
 				09925C251ABD67EF003811EB /* CCCameraRollCell.m in Sources */,
 			);
