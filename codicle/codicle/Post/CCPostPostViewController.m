@@ -15,6 +15,7 @@
     UIScrollView *_scrollView;
     
     UIView *_postViewFrame;
+    UIView *_userInfoView;
     FLAnimatedImageView *_postImageView;
     UIPlaceHolderTextView *_textField;
     UITapGestureRecognizer *_singleTap;
@@ -109,7 +110,8 @@
     
     _scrollView = [[UIScrollView alloc] initWithFrame:
                    CGRectMake(0, 59, _CCWINDOWSIZE().width, _CCWINDOWSIZE().height-39)];
-    _scrollView.contentSize = _postViewFrame.frame.size;
+    _scrollView.contentSize = CGSizeMake(_CCWINDOWSIZE().width,
+                                         _postViewFrame.frame.size.height+_userInfoView.frame.size.height);
     _scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-59, 0, 20, 0);
     _scrollView.alwaysBounceVertical = YES;
     [_scrollView addSubview:_postViewFrame];
@@ -122,10 +124,11 @@
     
     _postViewFrame = [[UIView alloc] initWithFrame:CGRectMake(0, -39, _CCWINDOWSIZE().width,
                                                               _postImageView.frame.size.height+
-                                                              _textField.frame.size.height+70)];
+                                                              _textField.frame.size.height+20)];
     _postViewFrame.backgroundColor = [UIColor whiteColor];
     [_postViewFrame addSubview:_postImageView];
     [_postViewFrame addSubview:_textField];
+    [self setUserInfo];
 }
 
 - (void)setImageView {
@@ -144,7 +147,7 @@
 
 - (void)setTextField {
     _textField = [[UIPlaceHolderTextView alloc] initWithFrame:
-                  CGRectMake(10, _postImageView.frame.size.height+10, _CCWINDOWSIZE().width-20, 17)];
+                  CGRectMake(10, _postImageView.frame.size.height+15, _CCWINDOWSIZE().width-20, 17)];
     _textField.delegate = self;
     _textField.textContainer.lineFragmentPadding = 0;
     _textField.textContainerInset = UIEdgeInsetsMake(0, 0, -6, 0);
@@ -152,6 +155,45 @@
     _textField.tintColor = _CCBlueColor();
     _textField.layoutManager.allowsNonContiguousLayout = NO;
     _textField.placeholder = @"Caption";
+}
+
+- (void)setUserInfo {
+    // img
+    UIImageView *thumbnail = [[UIImageView alloc] initWithFrame: CGRectMake(_textField.frame.origin.x, 15, 30, 30)];
+    thumbnail.clipsToBounds = YES;
+    thumbnail.layer.cornerRadius = thumbnail.frame.size.width/2;
+    thumbnail.image = [UIImage imageNamed:@"TEST_IMG_USR.jpg"];
+    
+    UIImageView *mark = [[UIImageView alloc] initWithFrame:
+                         CGRectMake(_textField.frame.origin.x+_textField.frame.size.width-30,
+                                    thumbnail.frame.origin.y+thumbnail.frame.size.height-21, 30, 21)];
+    if ([_selectImages count] > 1) {
+        mark.image = [UIImage imageNamed:@"gif_icon"];
+    } else {
+        mark.image = [UIImage imageNamed:@"photo_icon"];
+    }
+    
+    // label
+    UILabel *name = [[UILabel alloc] init];
+    name.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:11];
+    [name setText:@"Mr.Test1"];
+    [name sizeToFit];
+    [name setFrame:CGRectMake(thumbnail.frame.origin.x+thumbnail.frame.size.width+10,
+                               thumbnail.center.y-name.frame.size.height/2,
+                               name.frame.size.width,
+                               name.frame.size.height)];
+    
+    // infoView
+    _userInfoView = [[UIView alloc] initWithFrame:CGRectMake(_postViewFrame.frame.origin.x,
+                                                             _postViewFrame.frame.size.height,
+                                                             _postViewFrame.frame.size.width, 60)];
+    _userInfoView.backgroundColor = [UIColor whiteColor];
+    
+    // add
+    [_userInfoView addSubview:thumbnail];
+    [_userInfoView addSubview:mark];
+    [_userInfoView addSubview:name];
+    [_postViewFrame addSubview:_userInfoView];
 }
 
 - (void)keyboardWillShown:(NSNotification *)notification {
@@ -201,8 +243,10 @@
     [UIView setAnimationCurve:[notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue]];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [_scrollView setFrame:CGRectMake(0, 59, _CCWINDOWSIZE().width, _CCWINDOWSIZE().height-39)];
-    _scrollView.contentSize = _postViewFrame.frame.size;
-    _scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(-59, 0, 20, 0);
+    
+    _scrollView.contentSize = CGSizeMake(_CCWINDOWSIZE().width,
+                                         _postViewFrame.frame.size.height+_userInfoView.frame.size.height);
+    _scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(5, 0, 20, 0);
     [UIView commitAnimations];
     _isAnimKeyboard = YES;
 }
@@ -217,8 +261,14 @@
     [_postViewFrame setFrame:CGRectMake(_postViewFrame.frame.origin.x,
                                         _postViewFrame.frame.origin.y,
                                         _postViewFrame.frame.size.width,
-                                        _postImageView.frame.size.height+_textField.frame.size.height+70)];
-    _scrollView.contentSize = _postViewFrame.frame.size;
+                                        _postImageView.frame.size.height+_textField.frame.size.height+20)];
+    [_userInfoView setFrame:CGRectMake(_userInfoView.frame.origin.x,
+                                       _postViewFrame.frame.size.height,
+                                       _userInfoView.frame.size.width,
+                                       _userInfoView.frame.size.height)];
+    
+    _scrollView.contentSize = CGSizeMake(_CCWINDOWSIZE().width,
+                                         _postViewFrame.frame.size.height+_userInfoView.frame.size.height);
     
     CGFloat underScrollView = _scrollView.contentSize.height+_scrollView.frame.origin.y;
     CGFloat movePosition = 0;

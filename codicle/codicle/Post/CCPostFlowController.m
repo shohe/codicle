@@ -202,22 +202,26 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
 #pragma mark <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    cell.chkImage.backgroundColor = _CCBlueColor();
-    cell.maskView.alpha = .5f;
-    cell.indexPath = indexPath;
-    cell.isSelected = YES;
-    [_selectedAry addObject:indexPath];
-    [_selectUrls addObject:cell.imagePath];
-    cell.number.text = [NSString stringWithFormat:@"%ld", [_selectedAry indexOfObject:indexPath]+1];
-    
-    [self loadImageByPath];
+    if ([_selectedAry count] < 5) {
+        CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+        cell.chkImage.backgroundColor = _CCBlueColor();
+        cell.maskView.alpha = .5f;
+        cell.chkMark.alpha = 0;
+        cell.indexPath = indexPath;
+        cell.isSelected = YES;
+        [_selectedAry addObject:indexPath];
+        [_selectUrls addObject:cell.imagePath];
+        cell.number.text = [NSString stringWithFormat:@"%ld", [_selectedAry indexOfObject:indexPath]+1];
+        
+        [self loadImageByPath];
+    }
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     cell.chkImage.backgroundColor = [UIColor clearColor];
     cell.maskView.alpha = 0;
+    cell.chkMark.alpha = 1;
     cell.indexPath = nil;
     cell.isSelected = NO;
     [_selectedAry removeObject:indexPath];
