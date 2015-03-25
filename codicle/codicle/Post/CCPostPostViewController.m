@@ -144,12 +144,13 @@
 
 - (void)setTextField {
     _textField = [[UIPlaceHolderTextView alloc] initWithFrame:
-                  CGRectMake(10, _postImageView.frame.size.height+10, _CCWINDOWSIZE().width-20, 24)];
+                  CGRectMake(10, _postImageView.frame.size.height+10, _CCWINDOWSIZE().width-20, 17)];
     _textField.delegate = self;
     _textField.textContainer.lineFragmentPadding = 0;
-    _textField.textContainerInset = UIEdgeInsetsZero;
-    _textField.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:16];
+    _textField.textContainerInset = UIEdgeInsetsMake(0, 0, -6, 0);
+    _textField.font = [UIFont fontWithName:@"HiraKakuProN-W3" size:15];
     _textField.tintColor = _CCBlueColor();
+    _textField.layoutManager.allowsNonContiguousLayout = NO;
     _textField.placeholder = @"Caption";
 }
 
@@ -207,13 +208,11 @@
 }
 
 #pragma mark - UITextViewDelegate
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    return YES;
-}
-
-- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
-    return YES;
-}
+//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+//    CCLog(@"-");
+//    _textField.textContainerInset = UIEdgeInsetsMake(0, 0, -6, 0);
+//    return YES;
+//}
 
 - (void)textViewDidChange:(UITextView *)textView {
     [textView setContentOffset:textView.contentOffset animated:NO];
@@ -234,7 +233,6 @@
     }
     [_scrollView setContentOffset:CGPointMake(0, movePosition) animated:YES];
 }
-
 
 #pragma mark - UIGestureRecognizerDelegate
 - (void)onSingleTap:(UITapGestureRecognizer *)recognizer {
