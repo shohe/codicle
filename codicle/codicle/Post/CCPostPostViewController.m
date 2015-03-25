@@ -208,12 +208,6 @@
 }
 
 #pragma mark - UITextViewDelegate
-//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-//    CCLog(@"-");
-//    _textField.textContainerInset = UIEdgeInsetsMake(0, 0, -6, 0);
-//    return YES;
-//}
-
 - (void)textViewDidChange:(UITextView *)textView {
     [textView setContentOffset:textView.contentOffset animated:NO];
     CGRect f = textView.frame;
