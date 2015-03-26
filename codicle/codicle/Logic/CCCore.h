@@ -21,6 +21,7 @@ typedef void (^CCLoadImgCompletion)(UIImage * image);
 @property (nonatomic,strong) NSCache *urlImageCache;
 @property (readwrite) NSInteger *lastTabIndex;
 @property (nonatomic,strong) NSArray *cameraRollData;
+@property (nonatomic,strong) NSArray *videoRollData;
 
 + (CCCore*)core;
 /*****************************************/
@@ -29,7 +30,7 @@ typedef void (^CCLoadImgCompletion)(UIImage * image);
 - (void)loadTimeLineWithCompletion:(CCLoadDataCompletion)completion;
 - (void)gifImageAtURL:(NSString*)url completion:(CCLoadGifCompletion)completion;
 - (void)imageAtURL:(NSString*)url completion:(CCLoadImgCompletion)completion;
-- (void)loadCameraRollListWithCompletion:(CCLoadCameraRollCompletion)completion;
+- (void)loadCameraRollListIsPhoto:(BOOL)isPhoto WithCompletion:(CCLoadCameraRollCompletion)completion;
 - (void)photoFromALAssets:(NSURL*)url withCompletion:(CCImageByUrlCompletion)completion;
 
 /*****************************************/

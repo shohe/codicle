@@ -114,7 +114,7 @@
 
 
 #pragma mark - load CameraRoll
-- (void)loadCameraRollListWithCompletion:(CCLoadCameraRollCompletion)completion {
+- (void)loadCameraRollListIsPhoto:(BOOL)isPhoto WithCompletion:(CCLoadCameraRollCompletion)completion {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSError *error = nil;
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
@@ -122,7 +122,12 @@
         [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
             
             if (group) {
-                [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+                if (isPhoto) {
+                    [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+                } else {
+                    [group setAssetsFilter:[ALAssetsFilter allVideos]];
+                }
+                
                 [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
                     if (result) {
                         ALAssetRepresentation *rep = [result defaultRepresentation];
@@ -132,13 +137,17 @@
                         NSString *timeString = [NSString stringWithFormat:@"%@", [result valueForProperty:ALAssetPropertyDuration]];
                         NSDictionary *assetData = [[NSDictionary alloc] initWithObjectsAndKeys:image, @"IMAGE",url, @"URL",date, @"DATE",timeString, @"TIME", nil];
                         [mary insertObject:assetData atIndex:0];
-                        completion(error, mary);
                     }
                 }];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion(error, mary);
+                });
             }
             
         } failureBlock:^(NSError *error) {
-            completion(error, mary);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completion(error, mary);
+            });
         }];
     });
 }

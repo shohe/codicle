@@ -17,16 +17,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [CCCORE loadCameraRollListWithCompletion:^(NSError *error, NSArray *mary) {
-        if (!error && [mary count] > 0) {
-            NSMutableArray *array = [NSMutableArray array];
-            for (NSDictionary *data in [mary reverseObjectEnumerator]) {
-                [array addObject:data];
-            }
-            [CCCORE setCameraRollData:array];
-        }
-    }];
-    
     return YES;
 }
 

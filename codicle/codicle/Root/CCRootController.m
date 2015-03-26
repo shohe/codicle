@@ -87,14 +87,17 @@
                  CGRectMake(_CCWINDOWSIZE().width/4*3-40-10, _CCWINDOWSIZE().height, 80, 80)];
     
     _photoBtn.clipsToBounds = YES;
+    _photoBtn.tag = 0;
     _photoBtn.layer.cornerRadius = _photoBtn.frame.size.width/2.f;
     _videoBtn.clipsToBounds = YES;
+    _videoBtn.tag = 1;
     _videoBtn.layer.cornerRadius = _videoBtn.frame.size.width/2.f;
     
     _photoBtn.backgroundColor = [UIColor purpleColor];
     _videoBtn.backgroundColor = [UIColor purpleColor];
     
-    [_photoBtn addTarget:self action:@selector(displayCollectionView) forControlEvents:UIControlEventTouchUpInside];
+    [_photoBtn addTarget:self action:@selector(displayCollectionView:) forControlEvents:UIControlEventTouchUpInside];
+    [_videoBtn addTarget:self action:@selector(displayCollectionView:) forControlEvents:UIControlEventTouchUpInside];
     
     [_postView addSubview:_photoBtn];
     [_postView addSubview:_videoBtn];
@@ -176,12 +179,41 @@
     }];
 }
 
-- (void)displayCollectionView {
+- (void)displayCollectionView:(id)sender {
+    UIButton *button = (UIButton*)sender;
     UINavigationController *nc = [[self storyboard] instantiateViewControllerWithIdentifier:@"PostNaviController"];
     nc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     CCPostFlowController *postFlowController = nc.childViewControllers[0];
     postFlowController.delegate = self;
     
+    if (button.tag == 0) {
+        [CCCORE loadCameraRollListIsPhoto:YES WithCompletion:^(NSError *error, NSArray *mary) {
+            if (!error && [mary count] > 0) {
+                NSMutableArray *array = [NSMutableArray array];
+                for (NSDictionary *data in [mary reverseObjectEnumerator]) {
+                    [array addObject:data];
+                }
+                postFlowController.datasource = array;
+                [self presentViewWithAnim:nc];
+            }
+        }];
+    } else {
+        [CCCORE loadCameraRollListIsPhoto:NO WithCompletion:^(NSError *error, NSArray *mary) {
+            if (!error && [mary count] > 0) {
+                NSMutableArray *array = [NSMutableArray array];
+                for (NSDictionary *data in [mary reverseObjectEnumerator]) {
+                    [array addObject:data];
+                }
+                postFlowController.datasource = array;
+                [self presentViewWithAnim:nc];
+            }
+        }];
+    }
+    
+    
+}
+
+- (void)presentViewWithAnim:(UIViewController*)viewController {
     [UIView animateWithDuration:.2 animations:^{
         _photoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*1-40+10, -80, 80, 80);
         _videoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*3-40-10, -80, 80, 80);
@@ -189,7 +221,7 @@
     } completion:^(BOOL finished) {
         _photoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*1-40+10, _CCWINDOWSIZE().height, 80, 80);
         _videoBtn.frame = CGRectMake(_CCWINDOWSIZE().width/4*3-40-10, _CCWINDOWSIZE().height, 80, 80);
-        [self presentViewController:nc animated:NO completion:nil];
+        [self presentViewController:viewController animated:NO completion:nil];
     }];
 }
 

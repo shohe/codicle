@@ -75,7 +75,6 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     }];
     
     _isAnimated = YES;
-    _datasource = CCCORE.cameraRollData;
     _selectedAry = [NSMutableArray array];
     _selectImages = [NSMutableArray array];
     _selectUrls = [NSMutableArray array];
