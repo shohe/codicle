@@ -194,6 +194,7 @@
                     [array addObject:data];
                 }
                 postFlowController.datasource = array;
+                postFlowController.isPhoto = YES;
                 [self presentViewWithAnim:nc];
             }
         }];
@@ -205,6 +206,7 @@
                     [array addObject:data];
                 }
                 postFlowController.datasource = array;
+                postFlowController.isPhoto = NO;
                 [self presentViewWithAnim:nc];
             }
         }];

@@ -16,5 +16,6 @@
 
 @property (nonatomic, strong) id<CCPostFlowDelegate>delegate;
 @property (nonatomic, strong) NSArray *datasource;
+@property (nonatomic) BOOL isPhoto;
 
 @end

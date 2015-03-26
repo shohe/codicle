@@ -127,6 +127,8 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     [UIView animateWithDuration:.5f animations:^{
         self.navigationController.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        _datasource = nil;
     }];
     [_delegate didPostCancel];
 }
@@ -137,6 +139,7 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
         [self.storyboard instantiateViewControllerWithIdentifier:@"CCPostPostViewController"];
         postPostViewController.delegate = self;
         postPostViewController.selectImages = _selectImages;
+        postPostViewController.isGif = (_isPhoto) ? NO : YES;
         [self.navigationController pushViewController:postPostViewController animated:YES];
     }
 }
@@ -206,7 +209,7 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     _nextBtn.tintColor = _CCBlueColor();
     
-    if ([_selectedAry count] < 5) {
+    if (_isPhoto && [_selectedAry count] < 5) {
         CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
         cell.chkImage.backgroundColor = _CCBlueColor();
         cell.maskView.alpha = .5f;
@@ -216,8 +219,19 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
         [_selectedAry addObject:indexPath];
         [_selectUrls addObject:cell.imagePath];
         cell.number.text = [NSString stringWithFormat:@"%ld", [_selectedAry indexOfObject:indexPath]+1];
-        
         [self loadImageByPath];
+        
+    } else if (!_isPhoto && [_selectedAry count] == 0) {
+        CCCameraRollCell *cell = (CCCameraRollCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+        cell.chkImage.backgroundColor = _CCBlueColor();
+        cell.maskView.alpha = .5f;
+        cell.chkMark.alpha = 0;
+        cell.indexPath = indexPath;
+        cell.isSelected = YES;
+        [_selectedAry addObject:indexPath];
+        [_selectUrls addObject:cell.imagePath];
+        [self loadImageByPath];
+        
     }
 }
 

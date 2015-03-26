@@ -175,7 +175,7 @@
     UIImageView *mark = [[UIImageView alloc] initWithFrame:
                          CGRectMake(_textField.frame.origin.x+_textField.frame.size.width-30,
                                     thumbnail.frame.origin.y+thumbnail.frame.size.height-21, 30, 21)];
-    if ([_selectImages count] > 1) {
+    if ([_selectImages count] > 1 || _isGif) {
         mark.image = [UIImage imageNamed:@"gif_icon"];
     } else {
         mark.image = [UIImage imageNamed:@"photo_icon"];

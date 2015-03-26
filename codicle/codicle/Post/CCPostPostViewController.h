@@ -16,5 +16,6 @@
 
 @property (nonatomic, strong) id<CCPostPostDelegate>delegate;
 @property (nonatomic, strong) NSArray *selectImages;
+@property (nonatomic) BOOL isGif;
 
 @end
