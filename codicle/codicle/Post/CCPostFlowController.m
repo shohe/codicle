@@ -186,12 +186,14 @@ static NSString * const reuseIdentifier = @"CCCameraRollCell";
     if ([_selectedAry containsObject:indexPath]) {
         cell.chkImage.backgroundColor = _CCBlueColor();
         cell.maskView.alpha = .5f;
+        cell.chkMark.alpha = 0;
         cell.indexPath = indexPath;
         cell.isSelected = YES;
         cell.number.text = [NSString stringWithFormat:@"%ld", [_selectedAry indexOfObject:indexPath]+1];
     } else {
         cell.chkImage.backgroundColor = [UIColor clearColor];
         cell.maskView.alpha = 0;
+        cell.chkMark.alpha = 1;
         cell.indexPath = nil;
         cell.isSelected = NO;
         cell.number.text = @"";
